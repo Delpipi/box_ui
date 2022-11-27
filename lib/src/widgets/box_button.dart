@@ -65,7 +65,7 @@ class BoxButton extends StatelessWidget {
                 ],
               )
             : CircularProgressIndicator(
-                strokeWidth: 8,
+                strokeWidth: 4,
                 valueColor: AlwaysStoppedAnimation(Colors.white),
               ),
       ),

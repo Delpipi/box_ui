@@ -1,5 +1,5 @@
-import 'package:box_ui/shared/app_colors.dart';
-import 'package:box_ui/shared/styles.dart';
+import 'package:box_ui/src/shared/app_colors.dart';
+import 'package:box_ui/src/shared/styles.dart';
 import 'package:flutter/material.dart';
 
 class BoxText extends StatelessWidget {

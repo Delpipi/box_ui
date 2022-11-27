@@ -11,8 +11,11 @@ class ExampleView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         children: const [
           BoxText.headingOne('Design System'),
+          BoxButton(title: 'SIGN IN'),
+          
         ],
       ),
     );
   }
 }
+

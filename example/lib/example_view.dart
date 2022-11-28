@@ -13,7 +13,7 @@ class ExampleView extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         children: [
-          const BoxText.headingOne('Design System'),
+          BoxText.headingOne('Design System'),
           verticalSpaceSmall,
           const Divider(),
           verticalSpaceSmall,
@@ -35,27 +35,26 @@ final form = FormGroup({
 });
 
 List<Widget> get textWidgets => [
-      const BoxText.headline('Text Styles'),
+      BoxText.headline('Text Styles'),
       verticalSpaceMedium,
-      const BoxText.headingOne('Heading One'),
+      BoxText.headingOne('Heading One'),
       verticalSpaceMedium,
-      const BoxText.headingTwo('Heading Two'),
+      BoxText.headingTwo('Heading Two'),
       verticalSpaceMedium,
-      const BoxText.headingThree('Heading Three'),
+      BoxText.headingThree('Heading Three'),
       verticalSpaceMedium,
-      const BoxText.headline('Headline'),
+      BoxText.headline('Headline'),
       verticalSpaceMedium,
-      const BoxText.subheading('This will be a sub heading to the headling'),
+      BoxText.subheading('This will be a sub heading to the headling'),
       verticalSpaceMedium,
       BoxText.body('Body Text that will be used for the general body'),
       verticalSpaceMedium,
-      const BoxText.caption(
-          'This will be the caption usually for smaller details'),
+      BoxText.caption('This will be the caption usually for smaller details'),
       verticalSpaceMedium,
     ];
 
 List<Widget> get buttonWidgets => [
-      const BoxText.headline('Buttons'),
+      BoxText.headline('Buttons'),
       verticalSpaceMedium,
       BoxText.body('Normal'),
       verticalSpaceSmall,
@@ -90,7 +89,7 @@ List<Widget> get buttonWidgets => [
     ];
 
 List<Widget> get inputFields => [
-      const BoxText.headline('Input Field'),
+      BoxText.headline('Input Field'),
       verticalSpaceSmall,
       BoxText.body('Normal'),
       verticalSpaceSmall,

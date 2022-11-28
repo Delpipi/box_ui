@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ExampleView extends StatelessWidget {
-  ExampleView({super.key});
+  const ExampleView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        shrinkWrap: true,  
-        physics: ClampingScrollPhysics(),
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         children: [
-          BoxText.headingOne('Design System'),
+          const BoxText.headingOne('Design System'),
           verticalSpaceSmall,
-          Divider(),
+          const Divider(),
           verticalSpaceSmall,
           ...buttonWidgets,
           ...textWidgets,
@@ -35,50 +35,51 @@ final form = FormGroup({
 });
 
 List<Widget> get textWidgets => [
-      BoxText.headline('Text Styles'),
+      const BoxText.headline('Text Styles'),
       verticalSpaceMedium,
-      BoxText.headingOne('Heading One'),
+      const BoxText.headingOne('Heading One'),
       verticalSpaceMedium,
-      BoxText.headingTwo('Heading Two'),
+      const BoxText.headingTwo('Heading Two'),
       verticalSpaceMedium,
-      BoxText.headingThree('Heading Three'),
+      const BoxText.headingThree('Heading Three'),
       verticalSpaceMedium,
-      BoxText.headline('Headline'),
+      const BoxText.headline('Headline'),
       verticalSpaceMedium,
-      BoxText.subheading('This will be a sub heading to the headling'),
+      const BoxText.subheading('This will be a sub heading to the headling'),
       verticalSpaceMedium,
       BoxText.body('Body Text that will be used for the general body'),
       verticalSpaceMedium,
-      BoxText.caption('This will be the caption usually for smaller details'),
+      const BoxText.caption(
+          'This will be the caption usually for smaller details'),
       verticalSpaceMedium,
     ];
 
 List<Widget> get buttonWidgets => [
-      BoxText.headline('Buttons'),
+      const BoxText.headline('Buttons'),
       verticalSpaceMedium,
       BoxText.body('Normal'),
       verticalSpaceSmall,
-      BoxButton(
+      const BoxButton(
         title: 'SIGN IN',
       ),
       verticalSpaceSmall,
       BoxText.body('Disabled'),
       verticalSpaceSmall,
-      BoxButton(
+      const BoxButton(
         title: 'SIGN IN',
         disabled: true,
       ),
       verticalSpaceSmall,
       BoxText.body('Busy'),
       verticalSpaceSmall,
-      BoxButton(
-        title: 'SIGN IN',
-        busy: true,
-      ),
+      // BoxButton(
+      //   title: 'SIGN IN',
+      //   busy: true,
+      // ),
       verticalSpaceSmall,
       BoxText.body('Outline'),
       verticalSpaceSmall,
-      BoxButton.outline(
+      const BoxButton.outline(
         title: 'Select location',
         leading: Icon(
           Icons.send,
@@ -89,7 +90,7 @@ List<Widget> get buttonWidgets => [
     ];
 
 List<Widget> get inputFields => [
-      BoxText.headline('Input Field'),
+      const BoxText.headline('Input Field'),
       verticalSpaceSmall,
       BoxText.body('Normal'),
       verticalSpaceSmall,
@@ -107,7 +108,7 @@ List<Widget> get inputFields => [
             verticalSpaceSmall,
             BoxInputField(
               formControlName: 'fullName',
-              leading: Icon(Icons.reset_tv),
+              leading: const Icon(Icons.reset_tv),
               placeholder: 'Enter TV Code',
             ),
             verticalSpaceSmall,
@@ -115,7 +116,7 @@ List<Widget> get inputFields => [
             verticalSpaceSmall,
             BoxInputField(
               formControlName: 'fullName',
-              trailing: Icon(Icons.clear_outlined),
+              trailing: const Icon(Icons.clear_outlined),
               placeholder: 'Search for things',
             ),
           ],

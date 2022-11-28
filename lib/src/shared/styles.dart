@@ -20,6 +20,7 @@ const TextStyle heading3Style = TextStyle(
 );
 
 const TextStyle headlineStyle = TextStyle(
+  fontFamily: 'Ethnocentric',
   fontSize: 30,
   fontWeight: FontWeight.w700,
 );

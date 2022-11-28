@@ -7,22 +7,28 @@ class BoxText extends StatelessWidget {
   final TextStyle style;
   final TextAlign alignment;
 
-  const BoxText.headingOne(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.headingOne(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = heading1Style,
         alignment = align;
-  const BoxText.headingTwo(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.headingTwo(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = heading2Style,
         alignment = align;
-  const BoxText.headingThree(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.headingThree(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = heading3Style,
         alignment = align;
-  const BoxText.headline(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.headline(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = headlineStyle,
         alignment = align;
-  const BoxText.subheading(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.subheading(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = subheadingStyle,
         alignment = align;
-  const BoxText.caption(this.text, {TextAlign align = TextAlign.start})
+  const BoxText.caption(this.text,
+      {Color color = Colors.black, TextAlign align = TextAlign.start})
       : style = captionStyle,
         alignment = align;
 

@@ -1,5 +1,5 @@
-import 'package:box_ui/src/shared/app_colors.dart';
-import 'package:box_ui/src/shared/styles.dart';
+// ignore_for_file: use_key_in_widget_constructors
+import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
 
 class BoxText extends StatelessWidget {
@@ -7,33 +7,33 @@ class BoxText extends StatelessWidget {
   final TextStyle style;
   final TextAlign alignment;
 
-  const BoxText.headingOne(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = heading1Style,
+  BoxText.headingOne(this.text,
+      {Color color = kcPrimaryColor, TextAlign align = TextAlign.start})
+      : style = heading1Style.copyWith(color: color),
         alignment = align;
-  const BoxText.headingTwo(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = heading2Style,
+  BoxText.headingTwo(this.text,
+      {Color color = kcPrimaryColor, TextAlign align = TextAlign.start})
+      : style = heading2Style.copyWith(color: color),
         alignment = align;
-  const BoxText.headingThree(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = heading3Style,
+  BoxText.headingThree(this.text,
+      {Color color = kcPrimaryColor, TextAlign align = TextAlign.start})
+      : style = heading3Style.copyWith(color: color),
         alignment = align;
-  const BoxText.headline(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = headlineStyle,
+  BoxText.headline(this.text,
+      {Color color = kcPrimaryColor, TextAlign align = TextAlign.start})
+      : style = headlineStyle.copyWith(color: color),
         alignment = align;
-  const BoxText.subheading(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = subheadingStyle,
+  BoxText.subheading(this.text,
+      {Color color = kcOnSecondaryColor, TextAlign align = TextAlign.start})
+      : style = subheadingStyle.copyWith(color: color),
         alignment = align;
-  const BoxText.caption(this.text,
-      {Color color = Colors.black, TextAlign align = TextAlign.start})
-      : style = captionStyle,
+  BoxText.caption(this.text,
+      {Color color = kcOnSecondaryColor, TextAlign align = TextAlign.start})
+      : style = captionStyle.copyWith(color: color),
         alignment = align;
 
   BoxText.body(this.text,
-      {Color color = kcMediumGreyColor, TextAlign align = TextAlign.start})
+      {Color color = kcOnSecondaryColor, TextAlign align = TextAlign.start})
       : style = bodyStyle.copyWith(color: color),
         alignment = align;
 

@@ -10,3 +10,6 @@ export 'src/shared/app_colors.dart';
 
 // Helpers
 export 'src/shared/ui_helpers.dart';
+
+// Colors Export
+export 'src/shared/styles.dart';

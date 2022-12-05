@@ -1,17 +1,23 @@
 // Horizontal Spacing
 import 'package:flutter/material.dart';
 
-const Widget horizontalSpaceTiny = SizedBox(width: 5.0);
-const Widget horizontalSpaceSmall = SizedBox(width: 10.0);
-const Widget horizontalSpaceRegular = SizedBox(width: 18.0);
-const Widget horizontalSpaceMedium = SizedBox(width: 25.0);
-const Widget horizontalSpaceLarge = SizedBox(width: 50.0);
+const double sizeTiny = 5.0;
+const double sizeSmall = 10.0;
+const double sizeMedium = 25.0;
+const double sizeLarge = 50.0;
+const double sizeMassive = 120.0;
 
-const Widget verticalSpaceTiny = SizedBox(height: 5.0);
-const Widget verticalSpaceSmall = SizedBox(height: 10.0);
-const Widget verticalSpaceRegular = SizedBox(height: 18.0);
-const Widget verticalSpaceMedium = SizedBox(height: 25.0);
-const Widget verticalSpaceLarge = SizedBox(height: 50.0);
+const Widget horizontalSpaceTiny = SizedBox(width: sizeTiny);
+const Widget horizontalSpaceSmall = SizedBox(width: sizeSmall);
+const Widget horizontalSpaceMedium = SizedBox(width: sizeMedium);
+const Widget horizontalSpaceLarge = SizedBox(width: sizeLarge);
+const Widget horizontalSpaceMassive = SizedBox(width: sizeMassive);
+
+const Widget verticalSpaceTiny = SizedBox(height: sizeTiny);
+const Widget verticalSpaceSmall = SizedBox(height: sizeSmall);
+const Widget verticalSpaceMedium = SizedBox(height: sizeMedium);
+const Widget verticalSpaceLarge = SizedBox(height: sizeLarge);
+const Widget verticalSpaceMassive = SizedBox(height: sizeMassive);
 
 // Screen Size helpers
 

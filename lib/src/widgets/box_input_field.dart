@@ -39,7 +39,7 @@ class BoxInputField extends StatelessWidget {
         formControlName: formControlName,
         formControl: formControl,
         validationMessages: validationMessages,
-        style: TextStyle(height: 1),
+        style: const TextStyle(height: 1),
         obscureText: password,
         decoration: InputDecoration(
           hintText: placeholder,
@@ -55,16 +55,16 @@ class BoxInputField extends StatelessWidget {
                 )
               : null,
           border: circularBorder.copyWith(
-            borderSide: BorderSide(color: kcLightGreyColor),
+            borderSide: const BorderSide(color: kcLightGreyColor),
           ),
           errorBorder: circularBorder.copyWith(
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: const BorderSide(color: Colors.red),
           ),
           focusedBorder: circularBorder.copyWith(
-            borderSide: BorderSide(color: kcPrimaryColor),
+            borderSide: const BorderSide(color: kcPrimaryColor),
           ),
           enabledBorder: circularBorder.copyWith(
-            borderSide: BorderSide(color: kcLightGreyColor),
+            borderSide: const BorderSide(color: kcLightGreyColor),
           ),
         ),
       ),

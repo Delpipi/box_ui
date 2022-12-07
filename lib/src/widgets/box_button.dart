@@ -21,12 +21,14 @@ class BoxButton extends StatelessWidget {
         super(key: key);
 
   const BoxButton.outline({
+    Key? key,
     required this.title,
     this.onTap,
     this.leading,
   })  : disabled = false,
         busy = false,
-        outline = true;
+        outline = true,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

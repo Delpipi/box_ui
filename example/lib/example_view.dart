@@ -20,6 +20,7 @@ class ExampleView extends StatelessWidget {
           ...buttonWidgets,
           ...textWidgets,
           ...inputFields,
+          ...rangeSliders,
         ],
       ),
     );
@@ -32,6 +33,7 @@ final form = FormGroup({
     validators: [Validators.required],
     touched: true,
   ),
+  'price': FormControl<RangeValues>(),
 });
 
 List<Widget> get textWidgets => [
@@ -117,6 +119,26 @@ List<Widget> get inputFields => [
               formControlName: 'fullName',
               trailing: const Icon(Icons.clear_outlined),
               placeholder: 'Search for things',
+            ),
+          ],
+        ),
+      )
+    ];
+
+List<Widget> get rangeSliders => [
+      BoxText.headline('Range Silder'),
+      verticalSpaceSmall,
+      BoxText.body('Normal'),
+      verticalSpaceSmall,
+      ReactiveForm(
+        formGroup: form,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            BoxRangeSilder(
+              min: 1000000,
+              max: 7000000,
+              formControlName: 'price',
             ),
           ],
         ),

@@ -105,6 +105,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                   dropdownSearchDecoration: InputDecoration(
                     hintText: placeholder,
                     filled: true,
+                    prefixIcon: leading,
                     fillColor: kcVeryLightGreyColor,
                     contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: circularBorder.copyWith(
@@ -136,6 +137,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                     hintText: placeholder,
                     filled: true,
                     fillColor: kcVeryLightGreyColor,
+                    prefixIcon: leading,
                     contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: circularBorder.copyWith(
                       borderSide: const BorderSide(color: kcLightGreyColor),

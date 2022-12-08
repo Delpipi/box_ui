@@ -2,17 +2,22 @@
 
 import 'package:box_ui/src/shared/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:reactive_dropdown_search/reactive_dropdown_search.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class BoxDropdownField<T> extends StatelessWidget {
   final bool search;
   final bool multiSelection;
   final String? formControlName;
-  final FormControl<T>? formControl;
+  FormControl<T>? formControl;
+  FormControl<List<T>>? searchFormControl;
   final Map<String, ValidationMessageFunction>? validationMessages;
   List<DropdownMenuItem<T>> items;
+  List<T> searchItems;
+  PopupPropsMultiSelection<T>? popupProps;
   final String? placeholder;
   final Widget? leading;
+
   BoxDropdownField({
     Key? key,
     this.formControlName,
@@ -23,25 +28,32 @@ class BoxDropdownField<T> extends StatelessWidget {
     this.placeholder,
   })  : search = false,
         multiSelection = false,
+        searchItems = [],
         super(key: key);
+
   BoxDropdownField.search({
     Key? key,
     this.formControlName,
-    this.formControl,
+    this.searchFormControl,
     this.validationMessages,
     this.leading,
     this.placeholder,
+    required this.searchItems,
+    this.popupProps,
   })  : search = true,
         multiSelection = false,
         items = const [],
         super(key: key);
+
   BoxDropdownField.searchMultiSelection({
     Key? key,
     this.formControlName,
-    this.formControl,
+    this.searchFormControl,
     this.validationMessages,
     this.leading,
     this.placeholder,
+    required this.searchItems,
+    this.popupProps,
   })  : search = true,
         multiSelection = true,
         items = const [],
@@ -83,6 +95,64 @@ class BoxDropdownField<T> extends StatelessWidget {
             ),
             style: const TextStyle(color: Colors.black), // style color
           )
-        : Container();
+        : multiSelection
+            ? ReactiveDropdownSearchMultiSelection<T, T>(
+                formControlName: formControlName,
+                formControl: searchFormControl,
+                dropdownDecoratorProps: DropDownDecoratorProps(
+                  baseStyle: const TextStyle(color: Colors.black),
+                  dropdownSearchDecoration: InputDecoration(
+                    hintText: placeholder,
+                    filled: true,
+                    fillColor: kcVeryLightGreyColor,
+                    contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    border: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcLightGreyColor),
+                    ),
+                    errorBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                    focusedBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcPrimaryColor),
+                    ),
+                    enabledBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcLightGreyColor),
+                    ),
+                  ),
+                ),
+                popupProps: popupProps ??
+                    const PopupPropsMultiSelection.menu(showSearchBox: true),
+                items: searchItems,
+                showClearButton: true,
+              )
+            : ReactiveDropdownSearch<T, T>(
+                formControlName: formControlName,
+                formControl: formControl,
+                dropdownDecoratorProps: DropDownDecoratorProps(
+                  baseStyle: const TextStyle(color: Colors.black),
+                  dropdownSearchDecoration: InputDecoration(
+                    hintText: placeholder,
+                    filled: true,
+                    fillColor: kcVeryLightGreyColor,
+                    contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    border: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcLightGreyColor),
+                    ),
+                    errorBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                    focusedBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcPrimaryColor),
+                    ),
+                    enabledBorder: circularBorder.copyWith(
+                      borderSide: const BorderSide(color: kcLightGreyColor),
+                    ),
+                  ),
+                ),
+                popupProps: popupProps ??
+                    const PopupPropsMultiSelection.menu(showSearchBox: true),
+                items: searchItems,
+                showClearButton: true,
+              );
   }
 }

@@ -36,6 +36,8 @@ final form = FormGroup({
   ),
   'price': FormControl<RangeValues>(),
   'payment': FormControl<int>(validators: [Validators.required]),
+  'menu': FormControl<String>(value: 'Tunisia'),
+  'menuMultiple': FormControl<List<String>>(value: ['Tunisia', 'Brazil']),
   'bottomSheet': FormControl<String>(value: 'Brazil'),
 });
 
@@ -160,6 +162,7 @@ List<Widget> get drowpdownButtons => [
                 ),
               ],
             ),
+            verticalSpaceSmall,
             BoxText.body('Leading icon'),
             verticalSpaceSmall,
             BoxDropdownField<int>(
@@ -185,9 +188,26 @@ List<Widget> get drowpdownButtons => [
                 ),
               ],
             ),
+            verticalSpaceSmall,
             BoxText.body('Search option'),
             verticalSpaceSmall,
-            Container()
+            BoxDropdownField<String>.search(
+              formControlName: 'menu',
+              searchItems: const [
+                "Brazil",
+                "Italia (Disabled)",
+                "Tunisia",
+                'Canada'
+              ],
+            ),
+            verticalSpaceSmall,
+            BoxText.body('Multi Search option'),
+            verticalSpaceSmall,
+            BoxDropdownField<String>.searchMultiSelection(
+              formControlName: 'menuMultiple',
+              placeholder: "Select a country",
+              searchItems: const ["Brazil", "Italia", "Tunisia", 'Canada'],
+            ),
           ],
         ),
       )
@@ -196,13 +216,13 @@ List<Widget> get drowpdownButtons => [
 List<Widget> get rangeSliders => [
       BoxText.headline('Range Silder'),
       verticalSpaceSmall,
-      BoxText.body('Normal'),
-      verticalSpaceSmall,
       ReactiveForm(
         formGroup: form,
         child: ListView(
           shrinkWrap: true,
           children: [
+            BoxText.body('Normal'),
+            verticalSpaceSmall,
             BoxRangeSilder(
               min: 1000000,
               max: 7000000,

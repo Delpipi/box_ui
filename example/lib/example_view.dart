@@ -36,7 +36,8 @@ final form = FormGroup({
   ),
   'price': FormControl<RangeValues>(),
   'payment': FormControl<int>(validators: [Validators.required]),
-  'menu': FormControl<String>(value: 'Tunisia'),
+  'menu':
+      FormControl<String>(value: 'Tunisia', validators: [Validators.required]),
   'menuMultiple': FormControl<List<String>>(value: ['Tunisia', 'Brazil']),
   'bottomSheet': FormControl<String>(value: 'Brazil'),
 });

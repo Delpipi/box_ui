@@ -99,6 +99,7 @@ class BoxDropdownField<T> extends StatelessWidget {
             ? ReactiveDropdownSearchMultiSelection<T, T>(
                 formControlName: formControlName,
                 formControl: searchFormControl,
+                validationMessages: validationMessages,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
                   dropdownSearchDecoration: InputDecoration(
@@ -128,6 +129,7 @@ class BoxDropdownField<T> extends StatelessWidget {
             : ReactiveDropdownSearch<T, T>(
                 formControlName: formControlName,
                 formControl: formControl,
+                validationMessages: validationMessages,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
                   dropdownSearchDecoration: InputDecoration(

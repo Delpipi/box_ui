@@ -20,6 +20,7 @@ class ExampleView extends StatelessWidget {
           ...buttonWidgets,
           ...textWidgets,
           ...inputFields,
+          ...drowpdownButtons,
           ...rangeSliders,
         ],
       ),
@@ -34,6 +35,8 @@ final form = FormGroup({
     touched: true,
   ),
   'price': FormControl<RangeValues>(),
+  'payment': FormControl<int>(validators: [Validators.required]),
+  'bottomSheet': FormControl<String>(value: 'Brazil'),
 });
 
 List<Widget> get textWidgets => [
@@ -93,13 +96,13 @@ List<Widget> get buttonWidgets => [
 List<Widget> get inputFields => [
       BoxText.headline('Input Field'),
       verticalSpaceSmall,
-      BoxText.body('Normal'),
-      verticalSpaceSmall,
       ReactiveForm(
         formGroup: form,
         child: ListView(
           shrinkWrap: true,
           children: [
+            BoxText.body('Normal'),
+            verticalSpaceSmall,
             BoxInputField(
               formControlName: 'fullName',
               placeholder: 'Enter Password',
@@ -120,6 +123,71 @@ List<Widget> get inputFields => [
               trailing: const Icon(Icons.clear_outlined),
               placeholder: 'Search for things',
             ),
+          ],
+        ),
+      )
+    ];
+
+List<Widget> get drowpdownButtons => [
+      BoxText.headline('DropDown Button'),
+      verticalSpaceSmall,
+      ReactiveForm(
+        formGroup: form,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            BoxText.body('Normal'),
+            verticalSpaceSmall,
+            BoxDropdownField<int>(
+              formControlName: 'payment',
+              placeholder: 'select payment',
+              items: const [
+                DropdownMenuItem(
+                  value: 0,
+                  child: Text('Free'),
+                ),
+                DropdownMenuItem(
+                  value: 1,
+                  child: Text('Visa'),
+                ),
+                DropdownMenuItem(
+                  value: 2,
+                  child: Text('Mastercard'),
+                ),
+                DropdownMenuItem(
+                  value: 3,
+                  child: Text('PayPal'),
+                ),
+              ],
+            ),
+            BoxText.body('Leading icon'),
+            verticalSpaceSmall,
+            BoxDropdownField<int>(
+              formControlName: 'payment',
+              leading: const Icon(Icons.money),
+              placeholder: 'select payment',
+              items: const [
+                DropdownMenuItem(
+                  value: 0,
+                  child: Text('Free'),
+                ),
+                DropdownMenuItem(
+                  value: 1,
+                  child: Text('Visa'),
+                ),
+                DropdownMenuItem(
+                  value: 2,
+                  child: Text('Mastercard'),
+                ),
+                DropdownMenuItem(
+                  value: 3,
+                  child: Text('PayPal'),
+                ),
+              ],
+            ),
+            BoxText.body('Search option'),
+            verticalSpaceSmall,
+            Container()
           ],
         ),
       )

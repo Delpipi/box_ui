@@ -34,6 +34,12 @@ final form = FormGroup({
     validators: [Validators.required],
     touched: true,
   ),
+  'contact': FormControl<PhoneNumber>(
+    value: PhoneNumber(
+        countryISOCode: "CI", countryCode: "225", number: "0504888547"),
+    validators: [Validators.required],
+    touched: true,
+  ),
   'price': FormControl<RangeValues>(),
   'payment': FormControl<int>(validators: [Validators.required]),
   'menu':
@@ -125,6 +131,12 @@ List<Widget> get inputFields => [
               formControlName: 'fullName',
               trailing: const Icon(Icons.clear_outlined),
               placeholder: 'Search for things',
+            ),
+            verticalSpaceSmall,
+            BoxText.body('Contact Field'),
+            verticalSpaceSmall,
+            BoxInputField.contact(
+              formControlName: 'contact',
             ),
           ],
         ),

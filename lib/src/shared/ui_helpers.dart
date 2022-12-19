@@ -40,3 +40,5 @@ double screenHeightPercentage(BuildContext context, {double percentage = 1}) =>
 
 double screenWidthPercentage(BuildContext context, {double percentage = 1}) =>
     screenWidth(context) * percentage;
+
+bool isNumericValue(String s) => s.isNotEmpty && double.tryParse(s) != null;

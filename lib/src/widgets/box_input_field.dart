@@ -1,4 +1,5 @@
-import 'package:box_ui/src/shared/app_colors.dart';
+import 'package:box_ui/box_ui.dart';
+import 'package:box_ui/src/widgets/box_input_field/contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -10,6 +11,7 @@ class BoxInputField extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
   final bool password;
+  final bool contact;
   final void Function()? trailingTapped;
 
   final circularBorder = OutlineInputBorder(
@@ -26,7 +28,21 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.password = false,
-  }) : super(key: key);
+  })  : contact = false,
+        super(key: key);
+
+  BoxInputField.contact({
+    Key? key,
+    this.formControlName,
+    this.formControl,
+    this.validationMessages,
+    this.placeholder = '',
+    this.leading,
+    this.trailing,
+    this.trailingTapped,
+    this.password = false,
+  })  : contact = true,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,39 +51,71 @@ class BoxInputField extends StatelessWidget {
       ///
       /// We can also avoid this by changing the [primarySwatch] in MaterialApp
       data: ThemeData(primaryColor: kcPrimaryColor),
-      child: ReactiveTextField(
-        formControlName: formControlName,
-        formControl: formControl,
-        validationMessages: validationMessages,
-        style: const TextStyle(height: 1),
-        obscureText: password,
-        decoration: InputDecoration(
-          hintText: placeholder,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-          filled: true,
-          fillColor: kcVeryLightGreyColor,
-          prefixIcon: leading,
-          suffixIcon: trailing != null
-              ? GestureDetector(
-                  onTap: trailingTapped,
-                  child: trailing,
-                )
-              : null,
-          border: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcLightGreyColor),
-          ),
-          errorBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: Colors.red),
-          ),
-          focusedBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcPrimaryColor),
-          ),
-          enabledBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcLightGreyColor),
-          ),
-        ),
-      ),
+      child: !contact
+          ? ReactiveTextField(
+              formControlName: formControlName,
+              formControl: formControl,
+              validationMessages: validationMessages,
+              style: const TextStyle(height: 1),
+              obscureText: password,
+              decoration: InputDecoration(
+                hintText: placeholder,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                filled: true,
+                fillColor: kcVeryLightGreyColor,
+                prefixIcon: leading,
+                suffixIcon: trailing != null
+                    ? GestureDetector(
+                        onTap: trailingTapped,
+                        child: trailing,
+                      )
+                    : null,
+                border: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcLightGreyColor),
+                ),
+                errorBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: Colors.red),
+                ),
+                focusedBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcPrimaryColor),
+                ),
+                enabledBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcLightGreyColor),
+                ),
+              ),
+            )
+          : ContactPage(
+              context: context,
+              formControlName: formControlName,
+              formControl: formControl as FormControl<PhoneNumber>,
+              validationMessages: validationMessages,
+              decoration: InputDecoration(
+                hintText: placeholder,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                filled: true,
+                fillColor: kcVeryLightGreyColor,
+                suffixIcon: trailing != null
+                    ? InkWell(
+                        onTap: trailingTapped,
+                        child: trailing,
+                      )
+                    : null,
+                border: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcLightGreyColor),
+                ),
+                errorBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: Colors.red),
+                ),
+                focusedBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcPrimaryColor),
+                ),
+                enabledBorder: circularBorder.copyWith(
+                  borderSide: const BorderSide(color: kcLightGreyColor),
+                ),
+              ),
+            ),
     );
   }
 }

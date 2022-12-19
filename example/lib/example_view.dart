@@ -22,6 +22,7 @@ class ExampleView extends StatelessWidget {
           ...inputFields,
           ...drowpdownButtons,
           ...rangeSliders,
+          ...dateTimeFields,
         ],
       ),
     );
@@ -35,8 +36,7 @@ final form = FormGroup({
     touched: true,
   ),
   'contact': FormControl<PhoneNumber>(
-    value: PhoneNumber(
-        countryISOCode: "CI", countryCode: "225", number: "0504888547"),
+    value: const PhoneNumber(isoCode: IsoCode.CI, nsn: "0504888547"),
     validators: [Validators.required],
     touched: true,
   ),
@@ -46,6 +46,10 @@ final form = FormGroup({
       FormControl<String>(value: 'Tunisia', validators: [Validators.required]),
   'menuMultiple': FormControl<List<String>>(value: ['Tunisia', 'Brazil']),
   'bottomSheet': FormControl<String>(value: 'Brazil'),
+  'date': FormControl<DateTime>(value: DateTime.now()),
+  'time': FormControl<DateTime>(value: DateTime.now()),
+  'dateTime': FormControl<DateTime>(),
+  'dateTimeNullable': FormControl<DateTime>(value: null),
 });
 
 List<Widget> get textWidgets => [
@@ -138,6 +142,7 @@ List<Widget> get inputFields => [
             BoxInputField.contact(
               formControlName: 'contact',
             ),
+            verticalSpaceMedium,
           ],
         ),
       )
@@ -241,6 +246,41 @@ List<Widget> get rangeSliders => [
               max: 7000000,
               formControlName: 'price',
             ),
+          ],
+        ),
+      )
+    ];
+
+List<Widget> get dateTimeFields => [
+      BoxText.headline('Date Time Field'),
+      verticalSpaceSmall,
+      ReactiveForm(
+        formGroup: form,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            BoxText.body('Date Field'),
+            verticalSpaceSmall,
+            BoxDateTimeField.date(
+              formControlName: 'date',
+              leading: Icon(Icons.calendar_today),
+            ),
+            verticalSpaceSmall,
+            BoxText.body('Time Field'),
+            verticalSpaceSmall,
+            BoxDateTimeField.time(
+              formControlName: 'time',
+              leading: Icon(Icons.calendar_today),
+            ),
+            verticalSpaceSmall,
+            BoxText.body('DateTime Field'),
+            verticalSpaceSmall,
+            BoxDateTimeField.dateTime(
+              formControlName: 'dateTime',
+              placeholder: 'Datetime',
+              leading: Icon(Icons.calendar_today),
+            ),
+            verticalSpaceMedium,
           ],
         ),
       )

@@ -1,7 +1,7 @@
 import 'package:box_ui/box_ui.dart';
-import 'package:box_ui/src/widgets/box_input_field/contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
 
 class BoxInputField extends StatelessWidget {
   final String? formControlName;
@@ -85,11 +85,11 @@ class BoxInputField extends StatelessWidget {
                 ),
               ),
             )
-          : ContactPage(
-              context: context,
+          : ReactivePhoneFormField<PhoneNumber>(
               formControlName: formControlName,
               formControl: formControl as FormControl<PhoneNumber>,
               validationMessages: validationMessages,
+              defaultCountry: IsoCode.CI,
               decoration: InputDecoration(
                 hintText: placeholder,
                 contentPadding:

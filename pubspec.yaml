@@ -12,10 +12,11 @@ dependencies:
   reactive_range_slider: ^0.5.0
   reactive_dropdown_search: ^0.12.0
   reactive_image_picker: ^0.12.0
+  reactive_phone_form_field: ^0.10.0
+  reactive_date_time_picker: ^0.5.0
   google_fonts: ^3.0.1
   get: ^4.6.5
   intl: ^0.17.0
-  intl_phone_field: ^3.1.0
   flutter:
     sdk: flutter
 

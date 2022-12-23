@@ -96,6 +96,7 @@ class BoxInputField extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 filled: true,
                 fillColor: kcVeryLightGreyColor,
+                prefixIcon: leading,
                 suffixIcon: trailing != null
                     ? InkWell(
                         onTap: trailingTapped,

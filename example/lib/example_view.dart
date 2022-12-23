@@ -157,6 +157,7 @@ List<Widget> get inputFields => [
             verticalSpaceSmall,
             BoxInputField.contact(
               formControlName: 'contact',
+              leading: Icon(Icons.phone),
               validationMessages: {
                 'requiredTrue': (error) => "Merci de saisir votre contact",
                 'invalidPhoneLength': (error) => "Votre numéro n'est pas valide"

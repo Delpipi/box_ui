@@ -10,6 +10,7 @@ export 'src/widgets/box_datetime_field.dart';
 
 // Model Export
 export 'package:phone_numbers_parser/src/models/phone_number.dart';
+export 'package:phone_numbers_parser/src/models/phone_number_type.dart';
 export 'package:dart_countries/src/generated/iso_codes.enum.dart';
 
 // Colors Export

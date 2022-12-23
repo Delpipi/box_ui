@@ -37,7 +37,7 @@ final form = FormGroup({
   ),
   'contact': FormControl<PhoneNumber>(
     value: const PhoneNumber(isoCode: IsoCode.CI, nsn: "0504888547"),
-    validators: [Validators.required],
+    validators: [_requiredTrue, _invalidPhoneLength],
     touched: true,
   ),
   'price': FormControl<RangeValues>(),
@@ -51,6 +51,22 @@ final form = FormGroup({
   'dateTime': FormControl<DateTime>(),
   'dateTimeNullable': FormControl<DateTime>(value: null),
 });
+
+Map<String, dynamic>? _requiredTrue(AbstractControl<dynamic> control) {
+  return control.isNotNull &&
+          control.value is PhoneNumber &&
+          control.value!.nsn.trim().isNotEmpty
+      ? null
+      : {'requiredTrue': true};
+}
+
+Map<String, dynamic>? _invalidPhoneLength(AbstractControl<dynamic> control) {
+  return control.isNotNull &&
+          control.value is PhoneNumber &&
+          control.value.isValid(type: PhoneNumberType.mobile)
+      ? null
+      : {'invalidPhoneLength': true};
+}
 
 List<Widget> get textWidgets => [
       BoxText.headline('Text Styles'),
@@ -141,6 +157,10 @@ List<Widget> get inputFields => [
             verticalSpaceSmall,
             BoxInputField.contact(
               formControlName: 'contact',
+              validationMessages: {
+                'requiredTrue': (error) => "Merci de saisir votre contact",
+                'invalidPhoneLength': (error) => "Votre numéro n'est pas valide"
+              },
             ),
             verticalSpaceMedium,
           ],

@@ -6,7 +6,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 class BoxDateTimeField extends StatelessWidget {
   final String? formControlName;
   final FormControl<DateTime>? formControl;
-  final Locale? locale;
   final Map<String, ValidationMessageFunction>? validationMessages;
   final String placeholder;
   final Widget? leading;
@@ -28,7 +27,6 @@ class BoxDateTimeField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.type = ReactiveDatePickerFieldType.date,
-    this.locale = const Locale('fr', 'FR'),
   }) : super(key: key);
 
   BoxDateTimeField.time({
@@ -41,7 +39,6 @@ class BoxDateTimeField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.type = ReactiveDatePickerFieldType.time,
-    this.locale = const Locale('fr', 'FR'),
   }) : super(key: key);
 
   BoxDateTimeField.dateTime({
@@ -54,7 +51,6 @@ class BoxDateTimeField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.type = ReactiveDatePickerFieldType.dateTime,
-    this.locale = const Locale('fr', 'FR'),
   }) : super(key: key);
 
   @override
@@ -63,7 +59,6 @@ class BoxDateTimeField extends StatelessWidget {
       formControlName: formControlName,
       formControl: formControl,
       type: type,
-      locale: locale,
       decoration: InputDecoration(
         labelText: placeholder,
         contentPadding:

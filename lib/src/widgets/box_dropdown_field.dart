@@ -65,6 +65,25 @@ class BoxDropdownField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final boxDecoration = InputDecoration(
+      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      hintText: placeholder,
+      filled: true,
+      fillColor: kcVeryLightGreyColor,
+      prefixIcon: leading,
+      border: circularBorder.copyWith(
+        borderSide: const BorderSide(color: kcLightGreyColor),
+      ),
+      errorBorder: circularBorder.copyWith(
+        borderSide: const BorderSide(color: Colors.red),
+      ),
+      focusedBorder: circularBorder.copyWith(
+        borderSide: const BorderSide(color: kcPrimaryColor),
+      ),
+      enabledBorder: circularBorder.copyWith(
+        borderSide: const BorderSide(color: kcLightGreyColor),
+      ),
+    );
     return !search
         ? ReactiveDropdownField<T>(
             formControlName: formControlName,
@@ -73,26 +92,7 @@ class BoxDropdownField<T> extends StatelessWidget {
             items: items,
             dropdownColor:
                 kcVeryLightGreyColor, // change the color according style color at the end
-            decoration: InputDecoration(
-              hintText: placeholder,
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              filled: true,
-              fillColor: kcVeryLightGreyColor,
-              prefixIcon: leading,
-              border: circularBorder.copyWith(
-                borderSide: const BorderSide(color: kcLightGreyColor),
-              ),
-              errorBorder: circularBorder.copyWith(
-                borderSide: const BorderSide(color: Colors.red),
-              ),
-              focusedBorder: circularBorder.copyWith(
-                borderSide: const BorderSide(color: kcPrimaryColor),
-              ),
-              enabledBorder: circularBorder.copyWith(
-                borderSide: const BorderSide(color: kcLightGreyColor),
-              ),
-            ),
+            decoration: boxDecoration,
             style: const TextStyle(color: Colors.black), // style color
           )
         : multiSelection
@@ -102,25 +102,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                 validationMessages: validationMessages,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
-                  dropdownSearchDecoration: InputDecoration(
-                    hintText: placeholder,
-                    filled: true,
-                    prefixIcon: leading,
-                    fillColor: kcVeryLightGreyColor,
-                    contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
-                    border: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcLightGreyColor),
-                    ),
-                    errorBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: Colors.red),
-                    ),
-                    focusedBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcPrimaryColor),
-                    ),
-                    enabledBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcLightGreyColor),
-                    ),
-                  ),
+                  dropdownSearchDecoration: boxDecoration,
                 ),
                 popupProps: popupProps ??
                     const PopupPropsMultiSelection.menu(showSearchBox: true),
@@ -133,25 +115,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                 validationMessages: validationMessages,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
-                  dropdownSearchDecoration: InputDecoration(
-                    hintText: placeholder,
-                    filled: true,
-                    fillColor: kcVeryLightGreyColor,
-                    prefixIcon: leading,
-                    contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
-                    border: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcLightGreyColor),
-                    ),
-                    errorBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: Colors.red),
-                    ),
-                    focusedBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcPrimaryColor),
-                    ),
-                    enabledBorder: circularBorder.copyWith(
-                      borderSide: const BorderSide(color: kcLightGreyColor),
-                    ),
-                  ),
+                  dropdownSearchDecoration: boxDecoration,
                 ),
                 popupProps: popupProps ??
                     const PopupPropsMultiSelection.menu(showSearchBox: true),

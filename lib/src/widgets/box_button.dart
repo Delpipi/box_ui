@@ -1,5 +1,4 @@
-import 'package:box_ui/src/shared/app_colors.dart';
-import 'package:box_ui/src/shared/styles.dart';
+import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
 
 class BoxButton extends StatelessWidget {
@@ -50,25 +49,26 @@ class BoxButton extends StatelessWidget {
                 border: Border.all(
                   color: kcPrimaryColor,
                   width: 1,
-                )),
+                ),
+              ),
         child: !busy
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (leading != null) leading!,
-                  if (leading != null) SizedBox(width: 5),
+                  if (leading != null) horizontalSpaceTiny,
                   Text(
                     title,
                     style: bodyStyle.copyWith(
                       fontWeight: !outline ? FontWeight.bold : FontWeight.w400,
-                      color: !outline ? Colors.white : kcPrimaryColor,
+                      color: !outline ? kcOnPrimaryColor : kcPrimaryColor,
                     ),
                   ),
                 ],
               )
             : const CircularProgressIndicator(
                 strokeWidth: 4,
-                valueColor: AlwaysStoppedAnimation(Colors.white),
+                valueColor: AlwaysStoppedAnimation(kcOnPrimaryColor),
               ),
       ),
     );

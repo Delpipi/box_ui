@@ -40,6 +40,7 @@ final form = FormGroup({
     validators: [_requiredTrue, _invalidPhoneLength],
     touched: true,
   ),
+  'image': FormControl<ImageFile>(),
   'price': FormControl<RangeValues>(),
   'payment': FormControl<int>(validators: [Validators.required]),
   'menu':
@@ -157,11 +158,18 @@ List<Widget> get inputFields => [
             verticalSpaceSmall,
             BoxInputField.contact(
               formControlName: 'contact',
-              leading: Icon(Icons.phone),
+              leading: const Icon(Icons.phone),
               validationMessages: {
                 'requiredTrue': (error) => "Merci de saisir votre contact",
                 'invalidPhoneLength': (error) => "Votre numéro n'est pas valide"
               },
+            ),
+            verticalSpaceSmall,
+            BoxText.body("Image Picker"),
+            verticalSpaceSmall,
+            BoxInputField.imagePicker(
+              formControlName: 'image',
+              placeholder: 'Prendre une image',
             ),
             verticalSpaceMedium,
           ],
@@ -299,7 +307,6 @@ List<Widget> get dateTimeFields => [
             BoxDateTimeField.dateTime(
               formControlName: 'dateTime',
               placeholder: 'Datetime',
-              locale: const Locale('en', 'US'),
               leading: Icon(Icons.calendar_today),
             ),
             verticalSpaceMedium,

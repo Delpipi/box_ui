@@ -31,6 +31,8 @@ environment:
 dependencies:
   reactive_forms: ^14.1.0
   device_preview: ^1.1.0
+  flutter_localizations:
+    sdk: flutter 
   flutter:
     sdk: flutter
 

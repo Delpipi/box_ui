@@ -299,6 +299,7 @@ List<Widget> get dateTimeFields => [
             BoxDateTimeField.dateTime(
               formControlName: 'dateTime',
               placeholder: 'Datetime',
+              locale: const Locale('en', 'US'),
               leading: Icon(Icons.calendar_today),
             ),
             verticalSpaceMedium,

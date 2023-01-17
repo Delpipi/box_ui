@@ -34,7 +34,7 @@ class BoxDropdownField<T> extends StatelessWidget {
   BoxDropdownField.search({
     Key? key,
     this.formControlName,
-    this.searchFormControl,
+    this.formControl,
     this.validationMessages,
     this.leading,
     this.placeholder,

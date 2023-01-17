@@ -177,6 +177,13 @@ List<Widget> get inputFields => [
               },
             ),
             verticalSpaceSmall,
+            BoxText.body("TextArea"),
+            verticalSpaceSmall,
+            BoxInputField.textArea(
+              formControlName: 'fullName',
+              placeholder: 'Enter Password',
+            ),
+            verticalSpaceSmall,
             BoxText.body("Image Picker"),
             verticalSpaceSmall,
             BoxInputField.imagePicker(

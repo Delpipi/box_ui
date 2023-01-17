@@ -1,7 +1,6 @@
 import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_image_picker/image_file.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
 
@@ -42,8 +41,8 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
-    this.password = false,
   })  : type = 1,
+        password = false,
         super(key: key);
 
   BoxInputField.imagePicker({
@@ -55,10 +54,22 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
-    this.password = false,
   })  : type = 2,
+        password = false,
         super(key: key);
 
+  BoxInputField.textArea({
+    Key? key,
+    this.formControlName,
+    this.formControl,
+    this.validationMessages,
+    this.placeholder = '',
+    this.leading,
+    this.trailing,
+    this.trailingTapped,
+  })  : type = 3,
+        password = false,
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     final boxDecoration = InputDecoration(
@@ -121,6 +132,15 @@ class BoxInputField extends StatelessWidget {
             icon: const Icon(Icons.camera_alt),
             label: Text(placeholder),
           ),
+        );
+      case 3:
+        return ReactiveTextField(
+          formControlName: formControlName,
+          formControl: formControl,
+          validationMessages: validationMessages,
+          style: const TextStyle(height: 1),
+          maxLines: 5,
+          decoration: boxDecoration,
         );
       default:
         return Container();

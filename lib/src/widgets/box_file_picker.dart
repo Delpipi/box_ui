@@ -110,6 +110,7 @@ class BoxFilePicker extends StatelessWidget {
         formControlName: formControlName,
         formControl: formControl,
         allowMultiple: allowMultiple,
+        validationMessages: validationMessages,
         filePickerBuilder: (pickImage, files, onChange) {
           final items = [
             ...files.files

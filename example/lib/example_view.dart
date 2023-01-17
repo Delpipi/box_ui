@@ -20,6 +20,7 @@ class ExampleView extends StatelessWidget {
           ...buttonWidgets,
           ...textWidgets,
           ...inputFields,
+          ...filePickerButtons,
           ...drowpdownButtons,
           ...rangeSliders,
           ...dateTimeFields,
@@ -51,6 +52,17 @@ final form = FormGroup({
   'time': FormControl<DateTime>(value: DateTime.now()),
   'dateTime': FormControl<DateTime>(),
   'dateTimeNullable': FormControl<DateTime>(value: null),
+});
+
+final filePickerForm = fb.group({
+  'multiImage': FormControl<MultiFile<String>>(
+    value: const MultiFile<String>(
+      files: [
+        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
+      ],
+      platformFiles: [],
+    ),
+  ),
 });
 
 Map<String, dynamic>? _requiredTrue(AbstractControl<dynamic> control) {
@@ -170,6 +182,55 @@ List<Widget> get inputFields => [
             BoxInputField.imagePicker(
               formControlName: 'image',
               placeholder: 'Prendre une image',
+            ),
+            verticalSpaceMedium,
+          ],
+        ),
+      )
+    ];
+
+List<Widget> get filePickerButtons => [
+      BoxText.headline('File picker'),
+      verticalSpaceSmall,
+      ReactiveForm(
+        formGroup: filePickerForm,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            BoxText.body('picker image'),
+            verticalSpaceSmall,
+            BoxFilePicker.image(
+              formControlName: 'multiImage',
+              placeholder: 'Select',
+            ),
+            verticalSpaceSmall,
+            BoxText.body('picker video Leading Icon'),
+            verticalSpaceSmall,
+            BoxFilePicker.video(
+              formControlName: 'multiImage',
+              placeholder: 'Select',
+            ),
+            verticalSpaceSmall,
+            BoxText.body('Picker audio'),
+            verticalSpaceSmall,
+            BoxFilePicker.audio(
+              formControlName: 'multiImage',
+              placeholder: 'Select',
+            ),
+            verticalSpaceMedium,
+            BoxText.body('Mutiple selection'),
+            verticalSpaceSmall,
+            BoxText.body('Mutiple Image'),
+            BoxFilePicker.multipleImage(
+              formControlName: 'multiImage',
+              placeholder: 'Select',
+            ),
+            verticalSpaceSmall,
+            BoxText.body("Multiple video"),
+            verticalSpaceSmall,
+            BoxFilePicker.multipleVideo(
+              formControlName: 'multiImage',
+              placeholder: 'Select',
             ),
             verticalSpaceMedium,
           ],

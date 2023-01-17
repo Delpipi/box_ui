@@ -118,8 +118,7 @@ class BoxFilePicker extends StatelessWidget {
                   (key, value) => MapEntry(
                     key,
                     ListTile(
-                      minLeadingWidth: sizeTiny,
-                      horizontalTitleGap: sizeTiny,
+                      minLeadingWidth: sizeSmall,
                       onTap: () {
                         onChange(files.copyWith(
                             files: List<String>.from(files.files)
@@ -140,7 +139,7 @@ class BoxFilePicker extends StatelessWidget {
                   (key, value) => MapEntry(
                     key,
                     ListTile(
-                      minLeadingWidth: sizeTiny,
+                      minLeadingWidth: sizeSmall,
                       onTap: () {
                         onChange(files.copyWith(
                             platformFiles:
@@ -170,9 +169,11 @@ class BoxFilePicker extends StatelessWidget {
                 ),
               ),
               verticalSpaceSmall,
-              ElevatedButton(
+              FloatingActionButton.small(
+                elevation: 0.0,
+                backgroundColor: kcPrimaryColor,
                 onPressed: pickImage,
-                child: const Text("selectionné"),
+                child: const Icon(Icons.add),
               ),
             ],
           );

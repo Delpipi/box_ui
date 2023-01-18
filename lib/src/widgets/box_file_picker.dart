@@ -118,14 +118,11 @@ class BoxFilePicker extends StatelessWidget {
               onChange(files.copyWith(
                   files: List<String>.from(files.files)..removeAt(0)));
             }
-          } else if (!allowMultiple && files.platformFiles.length >= 2) {
-            if (files.files.isNotEmpty) {
+            if (!allowMultiple && files.platformFiles.length >= 2) {
               onChange(files.copyWith(
-                  files: List<String>.from(files.files)..removeAt(0)));
+                  platformFiles: List<PlatformFile>.from(files.platformFiles)
+                    ..removeAt(0)));
             }
-            onChange(files.copyWith(
-                platformFiles: List<PlatformFile>.from(files.platformFiles)
-                  ..removeAt(0)));
           }
           final items = [
             ...files.files

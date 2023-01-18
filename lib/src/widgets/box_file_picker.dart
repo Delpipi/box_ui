@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:better_player/better_player.dart';
 
 class BoxFilePicker extends StatelessWidget {
   final String? formControlName;
@@ -112,6 +110,18 @@ class BoxFilePicker extends StatelessWidget {
         allowMultiple: allowMultiple,
         validationMessages: validationMessages,
         filePickerBuilder: (pickImage, files, onChange) {
+          if (!allowMultiple && files.files.length >= 2) {
+            onChange(files.copyWith(
+                files: List<String>.from(files.files)..removeAt(0)));
+          } else if (!allowMultiple && files.platformFiles.length >= 2) {
+            if (files.files.isNotEmpty) {
+              onChange(files.copyWith(
+                  files: List<String>.from(files.files)..removeAt(0)));
+              onChange(files.copyWith(
+                  platformFiles: List<PlatformFile>.from(files.platformFiles)
+                    ..removeAt(0)));
+            }
+          }
           final items = [
             ...files.files
                 .asMap()

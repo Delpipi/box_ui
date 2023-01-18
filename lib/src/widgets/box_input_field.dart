@@ -70,6 +70,19 @@ class BoxInputField extends StatelessWidget {
   })  : type = 3,
         password = false,
         super(key: key);
+
+  BoxInputField.number({
+    Key? key,
+    this.formControlName,
+    this.formControl,
+    this.validationMessages,
+    this.placeholder = '',
+    this.leading,
+    this.trailing,
+    this.trailingTapped,
+  })  : type = 4,
+        password = false,
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     final boxDecoration = InputDecoration(
@@ -140,6 +153,15 @@ class BoxInputField extends StatelessWidget {
           validationMessages: validationMessages,
           style: const TextStyle(height: 1),
           maxLines: 5,
+          decoration: boxDecoration,
+        );
+      case 4:
+        return ReactiveTextField(
+          formControlName: formControlName,
+          formControl: formControl,
+          validationMessages: validationMessages,
+          style: const TextStyle(height: 1),
+          keyboardType: TextInputType.number,
           decoration: boxDecoration,
         );
       default:

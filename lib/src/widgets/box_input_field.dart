@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
+import 'package:flutter/services.dart';
 
 class BoxInputField extends StatelessWidget {
   final String? formControlName;
@@ -162,6 +163,7 @@ class BoxInputField extends StatelessWidget {
           validationMessages: validationMessages,
           style: const TextStyle(height: 1),
           keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: boxDecoration,
         );
       default:

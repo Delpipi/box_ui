@@ -26,8 +26,8 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
-    this.type = ReactiveDatePickerFieldType.date,
-  }) : super(key: key);
+  })  : type = ReactiveDatePickerFieldType.date,
+        super(key: key);
 
   BoxDateTimeField.time({
     Key? key,
@@ -38,8 +38,8 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
-    this.type = ReactiveDatePickerFieldType.time,
-  }) : super(key: key);
+  })  : type = ReactiveDatePickerFieldType.time,
+        super(key: key);
 
   BoxDateTimeField.dateTime({
     Key? key,
@@ -50,8 +50,8 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
-    this.type = ReactiveDatePickerFieldType.dateTime,
-  }) : super(key: key);
+  })  : type = ReactiveDatePickerFieldType.dateTime,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

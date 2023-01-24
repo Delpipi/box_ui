@@ -7,6 +7,7 @@ class BoxFilePicker extends StatelessWidget {
   final String? formControlName;
   final FormControl<MultiFile<String>>? formControl;
   final Map<String, ValidationMessageFunction>? validationMessages;
+  final ShowErrorsFunction? showErrors;
   final String placeholder;
   final String? dialogTitle;
   final FileType type;
@@ -27,6 +28,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.any,
     this.allowMultiple = false,
+    this.showErrors,
   }) : super(key: key);
 
   BoxFilePicker.audio({
@@ -38,6 +40,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.audio,
+    this.showErrors,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -50,6 +53,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.image,
+    this.showErrors,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -62,6 +66,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.video,
+    this.showErrors,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -74,6 +79,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.audio,
+    this.showErrors,
   })  : allowMultiple = true,
         super(key: key);
 
@@ -86,6 +92,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.image,
+    this.showErrors,
   })  : allowMultiple = true,
         super(key: key);
 
@@ -98,6 +105,7 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.video,
+    this.showErrors,
   })  : allowMultiple = true,
         super(key: key);
   @override
@@ -109,6 +117,7 @@ class BoxFilePicker extends StatelessWidget {
         formControl: formControl,
         allowMultiple: allowMultiple,
         validationMessages: validationMessages,
+        showErrors: showErrors,
         filePickerBuilder: (pickImage, files, onChange) {
           if (!allowMultiple && files.files.length >= 2) {
             onChange(files.copyWith(

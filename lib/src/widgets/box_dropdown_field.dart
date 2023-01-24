@@ -12,6 +12,7 @@ class BoxDropdownField<T> extends StatelessWidget {
   FormControl<T>? formControl;
   FormControl<List<T>>? searchFormControl;
   final Map<String, ValidationMessageFunction>? validationMessages;
+  final ShowErrorsFunction<dynamic>? showErrors;
   List<DropdownMenuItem<T>> items;
   List<T> searchItems;
   PopupPropsMultiSelection<T>? popupProps;
@@ -26,6 +27,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     required this.items,
     this.leading,
     this.placeholder,
+    this.showErrors,
   })  : search = false,
         multiSelection = false,
         searchItems = [],
@@ -40,6 +42,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     this.placeholder,
     required this.searchItems,
     this.popupProps,
+    this.showErrors,
   })  : search = true,
         multiSelection = false,
         items = const [],
@@ -54,6 +57,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     this.placeholder,
     required this.searchItems,
     this.popupProps,
+    this.showErrors,
   })  : search = true,
         multiSelection = true,
         items = const [],
@@ -89,6 +93,7 @@ class BoxDropdownField<T> extends StatelessWidget {
             formControlName: formControlName,
             formControl: formControl,
             validationMessages: validationMessages,
+            showErrors: showErrors,
             items: items,
             dropdownColor:
                 kcVeryLightGreyColor, // change the color according style color at the end
@@ -100,6 +105,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                 formControlName: formControlName,
                 formControl: searchFormControl,
                 validationMessages: validationMessages,
+                showErrors: showErrors,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
                   dropdownSearchDecoration: boxDecoration,
@@ -113,6 +119,7 @@ class BoxDropdownField<T> extends StatelessWidget {
                 formControlName: formControlName,
                 formControl: formControl,
                 validationMessages: validationMessages,
+                showErrors: showErrors,
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: const TextStyle(color: Colors.black),
                   dropdownSearchDecoration: boxDecoration,

@@ -7,6 +7,7 @@ class BoxDateTimeField extends StatelessWidget {
   final String? formControlName;
   final FormControl<DateTime>? formControl;
   final Map<String, ValidationMessageFunction>? validationMessages;
+  final ShowErrorsFunction<dynamic>? showErrors;
   final String placeholder;
   final Widget? leading;
   final Widget? trailing;
@@ -26,6 +27,7 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = ReactiveDatePickerFieldType.date,
         super(key: key);
 
@@ -38,6 +40,7 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = ReactiveDatePickerFieldType.time,
         super(key: key);
 
@@ -50,6 +53,7 @@ class BoxDateTimeField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = ReactiveDatePickerFieldType.dateTime,
         super(key: key);
 
@@ -58,6 +62,8 @@ class BoxDateTimeField extends StatelessWidget {
     return ReactiveDateTimePicker(
       formControlName: formControlName,
       formControl: formControl,
+      validationMessages: validationMessages,
+      showErrors: showErrors,
       type: type,
       decoration: InputDecoration(
         labelText: placeholder,

@@ -9,6 +9,7 @@ class BoxInputField extends StatelessWidget {
   final String? formControlName;
   final FormControl<dynamic>? formControl;
   final Map<String, ValidationMessageFunction>? validationMessages;
+  final ShowErrorsFunction<dynamic>? showErrors;
   final String placeholder;
   final Widget? leading;
   final Widget? trailing;
@@ -30,6 +31,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.password = false,
+    this.showErrors,
   })  : type = 0,
         super(key: key);
 
@@ -42,6 +44,7 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = 1,
         password = false,
         super(key: key);
@@ -55,6 +58,7 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = 2,
         password = false,
         super(key: key);
@@ -68,6 +72,7 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = 3,
         password = false,
         super(key: key);
@@ -81,6 +86,7 @@ class BoxInputField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.trailingTapped,
+    this.showErrors,
   })  : type = 4,
         password = false,
         super(key: key);
@@ -117,6 +123,7 @@ class BoxInputField extends StatelessWidget {
           formControlName: formControlName,
           formControl: formControl,
           validationMessages: validationMessages,
+          showErrors: showErrors,
           style: const TextStyle(height: 1),
           obscureText: password,
           decoration: boxDecoration,
@@ -126,6 +133,7 @@ class BoxInputField extends StatelessWidget {
           formControlName: formControlName,
           formControl: formControl as FormControl<PhoneNumber>,
           validationMessages: validationMessages,
+          showErrors: showErrors,
           defaultCountry: IsoCode.CI,
           decoration: boxDecoration,
         );
@@ -133,6 +141,7 @@ class BoxInputField extends StatelessWidget {
         return ReactiveImagePicker(
           formControlName: formControlName,
           formControl: formControl as FormControl<ImageFile>,
+          showErrors: showErrors,
           decoration: const InputDecoration(
               contentPadding: EdgeInsets.zero,
               labelText: 'Image',
@@ -152,6 +161,7 @@ class BoxInputField extends StatelessWidget {
           formControlName: formControlName,
           formControl: formControl,
           validationMessages: validationMessages,
+          showErrors: showErrors,
           style: const TextStyle(height: 1),
           maxLines: 5,
           decoration: boxDecoration,
@@ -161,6 +171,7 @@ class BoxInputField extends StatelessWidget {
           formControlName: formControlName,
           formControl: formControl,
           validationMessages: validationMessages,
+          showErrors: showErrors,
           style: const TextStyle(height: 1),
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],

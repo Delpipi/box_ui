@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 class BoxInputField extends StatelessWidget {
   final String? formControlName;
   final FormControl<dynamic>? formControl;
+  final TextEditingController? controller;
   final Map<String, ValidationMessageFunction>? validationMessages;
   final ShowErrorsFunction<dynamic>? showErrors;
   final String placeholder;
@@ -25,6 +26,7 @@ class BoxInputField extends StatelessWidget {
     Key? key,
     this.formControlName,
     this.formControl,
+    this.controller,
     this.validationMessages,
     this.placeholder = '',
     this.leading,
@@ -47,6 +49,7 @@ class BoxInputField extends StatelessWidget {
     this.showErrors,
   })  : type = 1,
         password = false,
+        controller = null,
         super(key: key);
 
   BoxInputField.imagePicker({
@@ -61,12 +64,14 @@ class BoxInputField extends StatelessWidget {
     this.showErrors,
   })  : type = 2,
         password = false,
+        controller = null,
         super(key: key);
 
   BoxInputField.textArea({
     Key? key,
     this.formControlName,
     this.formControl,
+    this.controller,
     this.validationMessages,
     this.placeholder = '',
     this.leading,
@@ -81,6 +86,7 @@ class BoxInputField extends StatelessWidget {
     Key? key,
     this.formControlName,
     this.formControl,
+    this.controller,
     this.validationMessages,
     this.placeholder = '',
     this.leading,
@@ -122,6 +128,7 @@ class BoxInputField extends StatelessWidget {
         return ReactiveTextField(
           formControlName: formControlName,
           formControl: formControl,
+          controller: controller,
           validationMessages: validationMessages,
           showErrors: showErrors,
           style: const TextStyle(height: 1),
@@ -160,6 +167,7 @@ class BoxInputField extends StatelessWidget {
         return ReactiveTextField(
           formControlName: formControlName,
           formControl: formControl,
+          controller: controller,
           validationMessages: validationMessages,
           showErrors: showErrors,
           style: const TextStyle(height: 1),
@@ -170,6 +178,7 @@ class BoxInputField extends StatelessWidget {
         return ReactiveTextField(
           formControlName: formControlName,
           formControl: formControl,
+          controller: controller,
           validationMessages: validationMessages,
           showErrors: showErrors,
           style: const TextStyle(height: 1),

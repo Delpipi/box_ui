@@ -10,7 +10,6 @@ const PdfColor _firstColor = PdfColor.fromInt(0xFFe4a923);
 
 class BoxPdfPreview extends StatelessWidget {
   final String? title;
-  final String? typeEntete;
   final List<String> headers;
   final List<List<dynamic>> data;
   final String? datetime;
@@ -20,7 +19,6 @@ class BoxPdfPreview extends StatelessWidget {
   const BoxPdfPreview({
     Key? key,
     this.title,
-    required this.typeEntete,
     required this.headers,
     required this.data,
     this.datetime,

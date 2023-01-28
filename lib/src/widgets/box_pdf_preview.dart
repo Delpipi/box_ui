@@ -79,13 +79,13 @@ class BoxPdfPreview extends StatelessWidget {
   pw.Widget getSvgImage(
       PdfPageFormat pageFormat, String? imagePortrait, String? imageLanscape) {
     if (pageFormat.dimension.y < pageFormat.dimension.x) {
-      if (assetImagePortrait != null && imageLanscape != null) {
+      if (assetImageLanscape != null && imageLanscape != null) {
         return pw.SvgImage(svg: imageLanscape);
       } else {
         return pw.Container();
       }
     } else {
-      if (assetImageLanscape != null && imagePortrait != null) {
+      if (assetImagePortrait != null && imagePortrait != null) {
         return pw.SvgImage(svg: imagePortrait);
       } else {
         return pw.Container();

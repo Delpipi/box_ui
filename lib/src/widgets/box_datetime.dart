@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class BoxDateTime extends GetConnect {
   final String? lang;
-  BoxDateTime(this.lang);
+  BoxDateTime({this.lang});
   Future<String?> getCurrentDate() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");

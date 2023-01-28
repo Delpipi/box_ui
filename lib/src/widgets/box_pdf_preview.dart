@@ -100,7 +100,13 @@ class BoxPdfPreview extends StatelessWidget {
         pw.SizedBox(height: sizeLarge),
         pw.Container(
           alignment: pw.Alignment.centerRight,
-          child: pw.Text(datetime ?? ''),
+          child: pw.Text(
+            datetime ?? '',
+            style: const pw.TextStyle(
+              color: _secondColor,
+              fontSize: 8.0,
+            ),
+          ),
         ),
         pw.SizedBox(height: sizeSmall),
         pw.Container(
@@ -108,9 +114,10 @@ class BoxPdfPreview extends StatelessWidget {
           child: pw.Text(
             title ?? '',
             style: pw.TextStyle(
-                color: _secondColor,
-                fontSize: 15,
-                fontWeight: pw.FontWeight.bold),
+              color: _secondColor,
+              fontSize: 8.0,
+              fontWeight: pw.FontWeight.bold,
+            ),
           ),
         ),
         pw.SizedBox(height: sizeSmall),
@@ -146,7 +153,7 @@ class BoxPdfPreview extends StatelessWidget {
       headerHeight: 5,
       cellHeight: 5,
       headerStyle: pw.TextStyle(
-        fontSize: 5.0,
+        fontSize: 8.0,
         color: PdfColors.white,
         fontWeight: pw.FontWeight.bold,
       ),

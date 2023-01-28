@@ -9,7 +9,7 @@ class BoxDateTime extends GetConnect {
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
     if (response.body != null) {
       var datetime = response.body['datetime'];
-      return DateFormat.yMMMMEEEEd(lang).format(datetime as DateTime);
+      return DateFormat.yMMMMEEEEd(lang).format(DateTime.parse(datetime));
     } else {
       return null;
     }
@@ -20,7 +20,9 @@ class BoxDateTime extends GetConnect {
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
     if (response.body != null) {
       var datetime = response.body['datetime'];
-      return DateFormat.yMMMMEEEEd(lang).add_jms().format(datetime as DateTime);
+      return DateFormat.yMMMMEEEEd(lang)
+          .add_jms()
+          .format(DateTime.parse(datetime));
     } else {
       return null;
     }
@@ -31,7 +33,7 @@ class BoxDateTime extends GetConnect {
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
     if (response.body != null) {
       var datetime = response.body['datetime'];
-      return DateFormat.Hm(lang).format(datetime as DateTime);
+      return DateFormat.Hm(lang).format(DateTime.parse(datetime));
     } else {
       return null;
     }

@@ -7,35 +7,33 @@ class BoxDateTime extends GetConnect {
   Future<String> getCurrentDate() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = json.decode(response.body['datetime']);
-    return Jiffy(datetime as String).yMMMMEEEEd;
+    var datetime = response.body['datetime'];
+    return Jiffy(datetime).yMMMMEEEEd;
   }
 
   Future<String> getCurrentDateTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = json.decode(response.body['datetime']);
-    return Jiffy(datetime as String).yMMMMEEEEdjm;
+    var datetime = response.body['datetime'];
+    return Jiffy(datetime).yMMMMEEEEdjm;
   }
 
   Future<String> getCurrentTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = json.decode(response.body['datetime']);
-    return Jiffy(datetime as String).Hm;
+    var datetime = response.body['datetime'];
+    return Jiffy(datetime).Hm;
   }
 
   Future<int> getDayOfWeek() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var data = json.decode(response.body);
-    return data['day_of_week'];
+    return response.body['day_of_week'] as int;
   }
 
   Future<int> getNumberWeek() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var data = json.decode(response.body);
-    return data['week_number'];
+    return response.body['week_number'] as int;
   }
 }

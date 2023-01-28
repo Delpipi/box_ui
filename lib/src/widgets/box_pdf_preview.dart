@@ -115,7 +115,7 @@ class BoxPdfPreview extends StatelessWidget {
             title ?? '',
             style: pw.TextStyle(
               color: _secondColor,
-              fontSize: 8.0,
+              fontSize: 12.0,
               fontWeight: pw.FontWeight.bold,
             ),
           ),

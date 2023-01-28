@@ -30,15 +30,10 @@ class BoxPdfPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PDF'),
-      ),
-      body: PdfPreview(
-        allowPrinting: false,
-        canDebug: false,
-        build: (format) => buildPdf(format),
-      ),
+    return PdfPreview(
+      allowPrinting: false,
+      canDebug: false,
+      build: (format) => buildPdf(format),
     );
   }
 

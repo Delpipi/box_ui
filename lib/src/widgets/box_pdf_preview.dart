@@ -137,6 +137,7 @@ class BoxPdfPreview extends StatelessWidget {
   pw.Widget _contentTable(pw.Context context) {
     return pw.Table.fromTextArray(
       border: null,
+      headerAlignment: pw.Alignment.centerLeft,
       cellAlignment: pw.Alignment.centerLeft,
       headerDecoration: const pw.BoxDecoration(
         borderRadius: pw.BorderRadius.all(pw.Radius.circular(2)),

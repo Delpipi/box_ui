@@ -8,7 +8,7 @@ import 'package:printing/printing.dart';
 const PdfColor _secondColor = PdfColor.fromInt(0xFF082845);
 const PdfColor _firstColor = PdfColor.fromInt(0xFFe4a923);
 
-class BoxPdfPreviewPage extends StatelessWidget {
+class BoxPdfPreview extends StatelessWidget {
   final String? title;
   final String? typeEntete;
   final List<String> headers;
@@ -17,7 +17,7 @@ class BoxPdfPreviewPage extends StatelessWidget {
   final String? assetImagePortrait;
   final String? assetImageLanscape;
 
-  const BoxPdfPreviewPage({
+  const BoxPdfPreview({
     Key? key,
     this.title,
     required this.typeEntete,

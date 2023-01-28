@@ -146,7 +146,7 @@ class BoxPdfPreview extends StatelessWidget {
       headerHeight: 5,
       cellHeight: 5,
       headerStyle: pw.TextStyle(
-        fontSize: 8.0,
+        fontSize: 5.0,
         color: PdfColors.white,
         fontWeight: pw.FontWeight.bold,
       ),

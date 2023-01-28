@@ -1,28 +1,41 @@
-import 'dart:convert';
-
 import 'package:get/get_connect/connect.dart';
-import 'package:jiffy/jiffy.dart';
+import 'package:intl/intl.dart';
 
 class BoxDateTime extends GetConnect {
-  Future<String> getCurrentDate() async {
+  final String? lang;
+  BoxDateTime(this.lang);
+  Future<String?> getCurrentDate() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = response.body['datetime'];
-    return Jiffy(datetime).yMMMMEEEEd;
+    if (response.body != null) {
+      var datetime = response.body['datetime'];
+      return DateFormat.yMMMMEEEEd(lang).format(datetime as DateTime);
+    } else {
+      return null;
+    }
   }
 
-  Future<String> getCurrentDateTime() async {
+  Future<String?> getCurrentDateTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = response.body['datetime'];
-    return Jiffy(datetime).yMMMMEEEEdjm;
+    if (response.body != null) {
+      var datetime = response.body['datetime'];
+      return DateFormat.yMMMMEEEEd(lang).add_jms().format(datetime as DateTime);
+    } else {
+      return null;
+    }
   }
 
-  Future<String> getCurrentTime() async {
+  Future<String?> getCurrentTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    var datetime = response.body['datetime'];
-    return Jiffy(datetime).Hm;
+
+    if (response.body != null) {
+      var datetime = response.body['datetime'];
+      return DateFormat.Hm(lang).format(datetime as DateTime);
+    } else {
+      return null;
+    }
   }
 
   Future<int> getDayOfWeek() async {

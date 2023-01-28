@@ -39,10 +39,12 @@ class BoxPdfPreview extends StatelessWidget {
     // Create a PDF document.
     final doc = pw.Document();
 
-    String imagePortrait =
-        await rootBundle.loadString(assetImagePortrait ?? '');
-    String imageLanscape =
-        await rootBundle.loadString(assetImageLanscape ?? '');
+    String? imagePortrait = assetImagePortrait != null
+        ? await rootBundle.loadString(assetImagePortrait!)
+        : null;
+    String? imageLanscape = assetImageLanscape != null
+        ? await rootBundle.loadString(assetImageLanscape!)
+        : null;
 
     // Add page to PDF
     doc.addPage(
@@ -57,10 +59,7 @@ class BoxPdfPreview extends StatelessWidget {
           buildBackground: (context) => pw.FullPage(
             ignoreMargins: true,
             child: pw.Positioned(
-              child: pw.SvgImage(
-                  svg: format.dimension.y >= format.dimension.x
-                      ? imagePortrait
-                      : imageLanscape),
+              child: getSvgImage(format, imagePortrait, imageLanscape),
               left: 0,
               top: 0,
             ),
@@ -75,6 +74,23 @@ class BoxPdfPreview extends StatelessWidget {
     );
 
     return doc.save();
+  }
+
+  pw.Widget getSvgImage(
+      PdfPageFormat pageFormat, String? imagePortrait, String? imageLanscape) {
+    if (pageFormat.dimension.y < pageFormat.dimension.x) {
+      if (assetImagePortrait != null && imageLanscape != null) {
+        return pw.SvgImage(svg: imageLanscape);
+      } else {
+        return pw.Container();
+      }
+    } else {
+      if (assetImageLanscape != null && imagePortrait != null) {
+        return pw.SvgImage(svg: imagePortrait);
+      } else {
+        return pw.Container();
+      }
+    }
   }
 
   pw.Widget _contentHeader(pw.Context context) {

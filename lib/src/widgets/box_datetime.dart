@@ -7,22 +7,22 @@ class BoxDateTime extends GetConnect {
   Future<String> getCurrentDate() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    Map<String, Object?> data = json.decode(response.body);
-    return Jiffy(DateTime.parse(data['datetime'] as String)).yMMMMEEEEd;
+    var datetime = json.decode(response.body['datetime']);
+    return Jiffy(DateTime.parse(datetime as String)).yMMMMEEEEd;
   }
 
   Future<String> getCurrentDateTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    Map<String, Object?> data = json.decode(response.body);
-    return Jiffy(DateTime.parse(data['datetime'] as String)).yMMMMEEEEdjm;
+    var datetime = json.decode(response.body['datetime']);
+    return Jiffy(DateTime.parse(datetime as String)).yMMMMEEEEdjm;
   }
 
   Future<String> getCurrentTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    Map<String, Object?> data = json.decode(response.body);
-    return Jiffy(DateTime.parse(data['datetime'] as String)).Hm;
+    var datetime = json.decode(response.body['datetime']);
+    return Jiffy(DateTime.parse(datetime as String)).Hm;
   }
 
   Future<int> getDayOfWeek() async {

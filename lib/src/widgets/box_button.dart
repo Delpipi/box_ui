@@ -1,5 +1,6 @@
 import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:hovering/hovering.dart';
 
 class BoxButton extends StatelessWidget {
   final String title;
@@ -33,7 +34,8 @@ class BoxButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
+      child: HoverAnimatedContainer(
+        cursor: SystemMouseCursors.click,
         duration: const Duration(milliseconds: 350),
         width: double.infinity,
         height: 48,

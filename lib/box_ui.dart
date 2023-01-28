@@ -8,6 +8,8 @@ export 'src/widgets/box_slider/box_range_slider.dart';
 export 'src/widgets/box_dropdown_field.dart';
 export 'src/widgets/box_datetime_field.dart';
 export 'src/widgets/box_file_picker.dart';
+export 'src/widgets/box_pdf_preview.dart';
+export 'src/widgets/box_datetime.dart';
 
 // Model Export
 export 'package:phone_numbers_parser/src/models/phone_number.dart';

@@ -29,7 +29,6 @@ class BoxDateTime extends GetConnect {
   Future<String?> getCurrentTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-
     if (response.body != null) {
       var datetime = response.body['datetime'];
       return DateFormat.Hm(lang).format(datetime as DateTime);
@@ -38,15 +37,23 @@ class BoxDateTime extends GetConnect {
     }
   }
 
-  Future<int> getDayOfWeek() async {
+  Future<int?> getDayOfWeek() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    return response.body['day_of_week'] as int;
+    if (response.body != null) {
+      return response.body['day_of_week'] as int;
+    } else {
+      return null;
+    }
   }
 
-  Future<int> getNumberWeek() async {
+  Future<int?> getNumberWeek() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
-    return response.body['week_number'] as int;
+    if (response.body != null) {
+      return response.body['week_number'] as int;
+    } else {
+      return null;
+    }
   }
 }

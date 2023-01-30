@@ -67,6 +67,7 @@ class BoxDateTimeField extends StatelessWidget {
       type: type,
       decoration: InputDecoration(
         labelText: placeholder,
+        hintText: placeholder,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         filled: true,

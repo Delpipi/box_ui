@@ -71,7 +71,7 @@ class BoxDropdownField<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxDecoration = InputDecoration(
       contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      hintText: placeholder,
+      labelText: placeholder,
       filled: true,
       fillColor: kcVeryLightGreyColor,
       prefixIcon: leading,

@@ -20,6 +20,8 @@ dependencies:
   get: 
   intl: 
   hovering: 
+  mask_text_input_formatter:
+  pattern_formatter:
 
   printing: 
   pdf: 

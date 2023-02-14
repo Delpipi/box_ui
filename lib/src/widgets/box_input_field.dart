@@ -1,5 +1,7 @@
 import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_image_picker/reactive_image_picker.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
@@ -21,6 +23,8 @@ class BoxInputField extends StatelessWidget {
   final circularBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
   );
+
+  final thousandFormatter = NumberFormat('#,###', 'fr');
 
   BoxInputField({
     Key? key,
@@ -184,7 +188,10 @@ class BoxInputField extends StatelessWidget {
           showErrors: showErrors,
           style: const TextStyle(height: 1),
           keyboardType: TextInputType.number,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            ThousandsFormatter(formatter: thousandFormatter)
+          ],
           decoration: boxDecoration,
         );
       default:

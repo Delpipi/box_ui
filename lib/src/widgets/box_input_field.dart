@@ -190,7 +190,6 @@ class BoxInputField extends StatelessWidget {
           keyboardType: TextInputType.number,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            ThousandsFormatter(formatter: thousandFormatter)
           ],
           decoration: boxDecoration,
         );

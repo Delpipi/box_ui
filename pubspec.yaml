@@ -22,6 +22,8 @@ dependencies:
   hovering: 
   mask_text_input_formatter:
   pattern_formatter:
+  getwidget:
+  url_launcher:
 
   printing: 
   pdf: 

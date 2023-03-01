@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:box_ui/box_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BoxFilePicker extends StatelessWidget {
   final String? formControlName;
@@ -108,8 +110,42 @@ class BoxFilePicker extends StatelessWidget {
     this.showErrors,
   })  : allowMultiple = true,
         super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    Image getImageFile(FileType fileType) {
+      switch (fileType) {
+        case FileType.image:
+          return Image.network(
+            'https://img.icons8.com/fluency/512/full-image.png',
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          );
+        case FileType.audio:
+          return Image.network(
+            'https://img.icons8.com/external-flat-wichaiwi/512/external-audio-non-fungible-token-flat-wichaiwi.png',
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          );
+        case FileType.video:
+          return Image.network(
+            'https://img.icons8.com/fluency/512/video.png',
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          );
+        default:
+          return Image.network(
+            'https://img.icons8.com/avantgarde/512/file.png',
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          );
+      }
+    }
+
     return Container(
       constraints: const BoxConstraints(minHeight: 0, maxHeight: 300),
       child: ReactiveFilePicker<String>(
@@ -139,18 +175,49 @@ class BoxFilePicker extends StatelessWidget {
                 .map(
                   (key, value) => MapEntry(
                     key,
-                    ListTile(
-                      minLeadingWidth: sizeSmall,
-                      onTap: () {
-                        onChange(files.copyWith(
-                            files: List<String>.from(files.files)
-                              ..removeAt(key)));
-                      },
-                      leading: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
+                    GFCard(
+                      boxFit: BoxFit.cover,
+                      titlePosition: GFPosition.start,
+                      image: getImageFile(type),
+                      showImage: true,
+                      title: GFListTile(
+                        title: BoxText.caption(
+                          value.split(Platform.pathSeparator).last,
+                          align: TextAlign.center,
+                        ),
                       ),
-                      title: FileListItem(value, type).build(context),
+                      buttonBar: GFButtonBar(
+                        children: <Widget>[
+                          InkWell(
+                            child: const GFAvatar(
+                              backgroundColor: GFColors.SUCCESS,
+                              child: Icon(
+                                Icons.visibility,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onTap: () async {
+                              if (!await launchUrl(Uri.parse(value))) {
+                                throw Exception('Could not launch $value');
+                              }
+                            },
+                          ),
+                          InkWell(
+                            child: const GFAvatar(
+                              backgroundColor: GFColors.DANGER,
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onTap: () {
+                              onChange(files.copyWith(
+                                  files: List<String>.from(files.files)
+                                    ..removeAt(key)));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -160,19 +227,53 @@ class BoxFilePicker extends StatelessWidget {
                 .map(
                   (key, value) => MapEntry(
                     key,
-                    ListTile(
-                      minLeadingWidth: sizeSmall,
-                      onTap: () {
-                        onChange(files.copyWith(
-                            platformFiles:
-                                List<PlatformFile>.from(files.platformFiles)
-                                  ..removeAt(key)));
-                      },
-                      leading: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
+                    GFCard(
+                      boxFit: BoxFit.cover,
+                      titlePosition: GFPosition.start,
+                      image: getImageFile(type),
+                      showImage: true,
+                      title: GFListTile(
+                        title: BoxText.caption(
+                          value.path!.split(Platform.pathSeparator).last,
+                          align: TextAlign.center,
+                        ),
                       ),
-                      title: PlatformFileListItem(value, type).build(context),
+                      buttonBar: GFButtonBar(
+                        children: <Widget>[
+                          InkWell(
+                            child: const GFAvatar(
+                              backgroundColor: GFColors.SUCCESS,
+                              child: Icon(
+                                Icons.visibility,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onTap: () async {
+                              if (value.path != null) {
+                                if (!await launchUrl(
+                                    Uri.parse('file://${value.path}'))) {
+                                  throw Exception('Could not launch $value');
+                                }
+                              }
+                            },
+                          ),
+                          InkWell(
+                            child: const GFAvatar(
+                              backgroundColor: GFColors.DANGER,
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onTap: () {
+                              onChange(files.copyWith(
+                                  platformFiles: List<PlatformFile>.from(
+                                      files.platformFiles)
+                                    ..removeAt(key)));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -200,208 +301,7 @@ class BoxFilePicker extends StatelessWidget {
             ],
           );
         },
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-          labelText: placeholder,
-          filled: true,
-          fillColor: kcVeryLightGreyColor,
-          border: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcLightGreyColor),
-          ),
-          errorBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: Colors.red),
-          ),
-          focusedBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcPrimaryColor),
-          ),
-          enabledBorder: circularBorder.copyWith(
-            borderSide: const BorderSide(color: kcLightGreyColor),
-          ),
-        ),
       ),
     );
-  }
-}
-
-abstract class ListItem {
-  Widget build(BuildContext context);
-}
-
-class FileListItem extends ListItem {
-  final String url;
-  final FileType fileType;
-
-  FileListItem(this.url, this.fileType);
-
-  @override
-  Widget build(context) {
-    switch (fileType) {
-      case FileType.image:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/fluency/512/full-image.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              url.split(Platform.pathSeparator).last,
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      case FileType.audio:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/external-flat-wichaiwi/512/external-audio-non-fungible-token-flat-wichaiwi.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              url.split(Platform.pathSeparator).last,
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      case FileType.video:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/fluency/512/video.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              url.split(Platform.pathSeparator).last,
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      default:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/avantgarde/512/file.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              url.split(Platform.pathSeparator).last,
-              align: TextAlign.center,
-            ),
-          ],
-        );
-    }
-  }
-}
-
-class PlatformFileListItem extends ListItem {
-  final PlatformFile platformFile;
-  final FileType fileType;
-
-  PlatformFileListItem(this.platformFile, this.fileType);
-
-  @override
-  Widget build(context) {
-    switch (fileType) {
-      case FileType.image:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/fluency/512/full-image.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              platformFile.path?.split(Platform.pathSeparator).last ?? '',
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      case FileType.audio:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/external-flat-wichaiwi/512/external-audio-non-fungible-token-flat-wichaiwi.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              platformFile.path?.split(Platform.pathSeparator).last ?? '',
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      case FileType.video:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/fluency/512/video.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              platformFile.path?.split(Platform.pathSeparator).last ?? '',
-              align: TextAlign.center,
-            ),
-          ],
-        );
-      default:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 96.0,
-              height: 96.0,
-              child: Image.network(
-                'https://img.icons8.com/avantgarde/512/file.png',
-              ),
-            ),
-            verticalSpaceTiny,
-            BoxText.caption(
-              platformFile.path?.split(Platform.pathSeparator).last ?? '',
-              align: TextAlign.center,
-            ),
-          ],
-        );
-    }
   }
 }

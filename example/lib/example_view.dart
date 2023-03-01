@@ -57,9 +57,7 @@ final form = FormGroup({
 final filePickerForm = fb.group({
   'multiImage': FormControl<MultiFile<String>>(
     value: const MultiFile<String>(
-      files: [
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
-      ],
+      files: [],
       platformFiles: [],
     ),
   ),
@@ -204,40 +202,14 @@ List<Widget> get filePickerButtons => [
         child: ListView(
           shrinkWrap: true,
           children: [
-            BoxText.body('picker image'),
-            verticalSpaceSmall,
-            BoxFilePicker.image(
-              formControlName: 'multiImage',
-              placeholder: 'Select',
-            ),
-            verticalSpaceSmall,
-            BoxText.body('picker video Leading Icon'),
-            verticalSpaceSmall,
-            BoxFilePicker.video(
-              formControlName: 'multiImage',
-              placeholder: 'Select',
-            ),
-            verticalSpaceSmall,
-            BoxText.body('Picker audio'),
-            verticalSpaceSmall,
-            BoxFilePicker.audio(
-              formControlName: 'multiImage',
-              placeholder: 'Select',
-            ),
-            verticalSpaceMedium,
-            BoxText.body('Mutiple selection'),
-            verticalSpaceSmall,
-            BoxText.body('Mutiple Image'),
             BoxFilePicker.multipleImage(
               formControlName: 'multiImage',
               placeholder: 'Select',
             ),
             verticalSpaceSmall,
-            BoxText.body("Multiple video"),
-            verticalSpaceSmall,
-            BoxFilePicker.multipleVideo(
-              formControlName: 'multiImage',
-              placeholder: 'Select',
+            BoxButton(
+              title: "send",
+              onTap: () => print("FormValues: ${filePickerForm.value}"),
             ),
             verticalSpaceMedium,
           ],

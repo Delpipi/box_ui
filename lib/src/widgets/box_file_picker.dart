@@ -15,6 +15,7 @@ class BoxFilePicker extends StatelessWidget {
   final FileType type;
   final bool allowMultiple;
   final List<String>? allowedExtensions;
+  final String? pickerButtonTitle;
 
   final circularBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
@@ -31,6 +32,7 @@ class BoxFilePicker extends StatelessWidget {
     this.type = FileType.any,
     this.allowMultiple = false,
     this.showErrors,
+    this.pickerButtonTitle,
   }) : super(key: key);
 
   BoxFilePicker.audio({
@@ -43,6 +45,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.audio,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -56,6 +59,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.image,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -69,6 +73,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.video,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = false,
         super(key: key);
 
@@ -82,6 +87,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.audio,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = true,
         super(key: key);
 
@@ -95,6 +101,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.image,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = true,
         super(key: key);
 
@@ -108,6 +115,7 @@ class BoxFilePicker extends StatelessWidget {
     this.dialogTitle,
     this.type = FileType.video,
     this.showErrors,
+    this.pickerButtonTitle,
   })  : allowMultiple = true,
         super(key: key);
 
@@ -292,12 +300,14 @@ class BoxFilePicker extends StatelessWidget {
                 ),
               ),
               verticalSpaceSmall,
-              FloatingActionButton.small(
-                elevation: 0.0,
-                backgroundColor: kcPrimaryColor,
-                onPressed: pickImage,
-                child: const Icon(Icons.add),
-              ),
+              BoxButton(
+                title: pickerButtonTitle ?? "",
+                leading: const Icon(
+                  Icons.file_open,
+                  color: Colors.white,
+                ),
+                onTap: pickImage,
+              )
             ],
           );
         },

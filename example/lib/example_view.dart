@@ -57,7 +57,9 @@ final form = FormGroup({
 final filePickerForm = fb.group({
   'multiImage': FormControl<MultiFile<String>>(
     value: const MultiFile<String>(
-      files: [],
+      files: [
+        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
+      ],
       platformFiles: [],
     ),
   ),
@@ -199,8 +201,8 @@ List<Widget> get filePickerButtons => [
       verticalSpaceSmall,
       ReactiveForm(
         formGroup: filePickerForm,
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             BoxFilePicker.multipleImage(
               formControlName: 'multiImage',

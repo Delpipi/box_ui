@@ -126,36 +126,36 @@ class BoxFilePicker extends StatelessWidget {
         case FileType.image:
           return Image.network(
             'https://img.icons8.com/fluency/512/full-image.png',
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
+            width: 100.0,
+            height: 100.0,
             fit: BoxFit.cover,
           );
         case FileType.audio:
           return Image.network(
             'https://img.icons8.com/external-flat-wichaiwi/512/external-audio-non-fungible-token-flat-wichaiwi.png',
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
+            width: 100.0,
+            height: 100.0,
             fit: BoxFit.cover,
           );
         case FileType.video:
           return Image.network(
             'https://img.icons8.com/fluency/512/video.png',
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
+            width: 100.0,
+            height: 100.0,
             fit: BoxFit.cover,
           );
         default:
           return Image.network(
             'https://img.icons8.com/avantgarde/512/file.png',
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
+            width: 100.0,
+            height: 100.0,
             fit: BoxFit.cover,
           );
       }
     }
 
     return Container(
-      constraints: const BoxConstraints(minHeight: 0, maxHeight: 300),
+      constraints: const BoxConstraints(minHeight: 0, maxHeight: 150),
       child: ReactiveFilePicker<String>(
         formControlName: formControlName,
         formControl: formControl,
@@ -183,120 +183,131 @@ class BoxFilePicker extends StatelessWidget {
                 .map(
                   (key, value) => MapEntry(
                     key,
-                    GFCard(
-                      boxFit: BoxFit.cover,
-                      titlePosition: GFPosition.start,
-                      image: getImageFile(type),
-                      showImage: true,
-                      title: GFListTile(
-                        title: BoxText.caption(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BoxText.caption(
                           value.split(Platform.pathSeparator).last,
                           align: TextAlign.center,
                         ),
-                      ),
-                      buttonBar: GFButtonBar(
-                        children: <Widget>[
-                          InkWell(
-                            child: const GFAvatar(
-                              backgroundColor: GFColors.SUCCESS,
-                              child: Icon(
-                                Icons.visibility,
-                                color: Colors.white,
+                        verticalSpaceTiny,
+                        Flexible(child: getImageFile(type)),
+                        verticalSpaceTiny,
+                        Flexible(
+                          child: GFButtonBar(
+                            children: <Widget>[
+                              InkWell(
+                                child: const GFAvatar(
+                                  backgroundColor: GFColors.SUCCESS,
+                                  size: sizeMedium,
+                                  child: Icon(
+                                    Icons.visibility,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () async {
+                                  if (!await launchUrl(Uri.parse(value))) {
+                                    throw Exception('Could not launch $value');
+                                  }
+                                },
                               ),
-                            ),
-                            onTap: () async {
-                              if (!await launchUrl(Uri.parse(value))) {
-                                throw Exception('Could not launch $value');
-                              }
-                            },
-                          ),
-                          InkWell(
-                            child: const GFAvatar(
-                              backgroundColor: GFColors.DANGER,
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.white,
+                              InkWell(
+                                child: const GFAvatar(
+                                  backgroundColor: GFColors.DANGER,
+                                  size: sizeMedium,
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () {
+                                  onChange(files.copyWith(
+                                      files: List<String>.from(files.files)
+                                        ..removeAt(key)));
+                                },
                               ),
-                            ),
-                            onTap: () {
-                              onChange(files.copyWith(
-                                  files: List<String>.from(files.files)
-                                    ..removeAt(key)));
-                            },
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 )
-                .values,
+                .values
+                .toList(),
             ...files.platformFiles
                 .asMap()
                 .map(
                   (key, value) => MapEntry(
                     key,
-                    GFCard(
-                      boxFit: BoxFit.cover,
-                      titlePosition: GFPosition.start,
-                      image: getImageFile(type),
-                      showImage: true,
-                      title: GFListTile(
-                        title: BoxText.caption(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BoxText.caption(
                           value.path!.split(Platform.pathSeparator).last,
                           align: TextAlign.center,
                         ),
-                      ),
-                      buttonBar: GFButtonBar(
-                        children: <Widget>[
-                          InkWell(
-                            child: const GFAvatar(
-                              backgroundColor: GFColors.SUCCESS,
-                              child: Icon(
-                                Icons.visibility,
-                                color: Colors.white,
+                        verticalSpaceTiny,
+                        Flexible(child: getImageFile(type)),
+                        verticalSpaceTiny,
+                        Flexible(
+                          child: GFButtonBar(
+                            children: <Widget>[
+                              InkWell(
+                                child: const GFAvatar(
+                                  backgroundColor: GFColors.SUCCESS,
+                                  size: sizeMedium,
+                                  child: Icon(
+                                    Icons.visibility,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () async {
+                                  if (value.path != null) {
+                                    if (!await launchUrl(
+                                        Uri.file(value.path!))) {
+                                      throw Exception(
+                                          'Could not launch $value');
+                                    }
+                                  }
+                                },
                               ),
-                            ),
-                            onTap: () async {
-                              if (value.path != null) {
-                                if (!await launchUrl(
-                                    Uri.parse('file://${value.path}'))) {
-                                  throw Exception('Could not launch $value');
-                                }
-                              }
-                            },
-                          ),
-                          InkWell(
-                            child: const GFAvatar(
-                              backgroundColor: GFColors.DANGER,
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.white,
+                              InkWell(
+                                child: const GFAvatar(
+                                  backgroundColor: GFColors.DANGER,
+                                  size: sizeMedium,
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () {
+                                  onChange(files.copyWith(
+                                      files: List<String>.from(files.files)
+                                        ..removeAt(key)));
+                                },
                               ),
-                            ),
-                            onTap: () {
-                              onChange(files.copyWith(
-                                  platformFiles: List<PlatformFile>.from(
-                                      files.platformFiles)
-                                    ..removeAt(key)));
-                            },
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 )
-                .values,
+                .values
+                .toList(),
           ];
 
           return Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: items.length,
-                  itemBuilder: (_, i) {
-                    return items[i];
-                  },
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  children: List.generate(items.length, (index) {
+                    return items[index];
+                  }),
                 ),
               ),
               verticalSpaceSmall,

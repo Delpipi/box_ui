@@ -171,7 +171,13 @@ class BoxFilePicker extends StatelessWidget {
                 .map((key, value) => MapEntry(
                     key,
                     ListTile(
-                      onTap: () => applaunchUrl(Uri.parse(value)),
+                      onTap: () async {
+                        if (value != null) {
+                          if (!await launchUrl(Uri.parse(value))) {
+                            throw Exception('Could not launch $value');
+                          }
+                        }
+                      },
                       leading: GFAvatar(
                         backgroundColor: Colors.transparent,
                         backgroundImage: getImageFile(type),
@@ -195,8 +201,14 @@ class BoxFilePicker extends StatelessWidget {
                 .map((key, value) => MapEntry(
                       key,
                       ListTile(
-                        onTap: () =>
-                            applaunchUrl(Uri.parse("file:${value.path}")),
+                        onTap: () async {
+                          if (value.path != null) {
+                            if (!await launchUrl(
+                                Uri.parse("file:${value.path}"))) {
+                              throw Exception('Could not launch ${value.path}');
+                            }
+                          }
+                        },
                         leading: GFAvatar(
                           backgroundColor: Colors.transparent,
                           backgroundImage: getImageFile(type),
@@ -244,13 +256,5 @@ class BoxFilePicker extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-Future<void> applaunchUrl(Uri? uri) async {
-  if (uri != null) {
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch ${uri.path}');
-    }
   }
 }

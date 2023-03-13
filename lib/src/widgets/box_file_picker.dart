@@ -121,41 +121,29 @@ class BoxFilePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Image getImageFile(FileType fileType) {
+    NetworkImage getImageFile(FileType fileType) {
       switch (fileType) {
         case FileType.image:
-          return Image.network(
+          return const NetworkImage(
             'https://img.icons8.com/fluency/512/full-image.png',
-            width: 100.0,
-            height: 100.0,
-            fit: BoxFit.cover,
           );
         case FileType.audio:
-          return Image.network(
+          return const NetworkImage(
             'https://img.icons8.com/external-flat-wichaiwi/512/external-audio-non-fungible-token-flat-wichaiwi.png',
-            width: 100.0,
-            height: 100.0,
-            fit: BoxFit.cover,
           );
         case FileType.video:
-          return Image.network(
+          return const NetworkImage(
             'https://img.icons8.com/fluency/512/video.png',
-            width: 100.0,
-            height: 100.0,
-            fit: BoxFit.cover,
           );
         default:
-          return Image.network(
+          return const NetworkImage(
             'https://img.icons8.com/avantgarde/512/file.png',
-            width: 100.0,
-            height: 100.0,
-            fit: BoxFit.cover,
           );
       }
     }
 
     return Container(
-      constraints: const BoxConstraints(minHeight: 0, maxHeight: 150),
+      constraints: const BoxConstraints(minHeight: 0, maxHeight: 200),
       child: ReactiveFilePicker<String>(
         formControlName: formControlName,
         formControl: formControl,
@@ -180,134 +168,63 @@ class BoxFilePicker extends StatelessWidget {
           final items = [
             ...files.files
                 .asMap()
-                .map(
-                  (key, value) => MapEntry(
+                .map((key, value) => MapEntry(
                     key,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        BoxText.caption(
-                          value.split(Platform.pathSeparator).last,
-                          align: TextAlign.center,
+                    ListTile(
+                      leading: GFAvatar(
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: getImageFile(type),
+                        shape: GFAvatarShape.circle,
+                      ),
+                      title: BoxText.caption(
+                          value.split(Platform.pathSeparator).last),
+                      trailing: InkWell(
+                        onTap: () => onChange(files.copyWith(
+                            files: List<String>.from(files.files)
+                              ..removeAt(key))),
+                        child: const Icon(
+                          Icons.close,
+                          color: kcMediumGreyColor,
                         ),
-                        verticalSpaceTiny,
-                        Flexible(child: getImageFile(type)),
-                        verticalSpaceTiny,
-                        Flexible(
-                          child: GFButtonBar(
-                            children: <Widget>[
-                              InkWell(
-                                child: const GFAvatar(
-                                  backgroundColor: GFColors.SUCCESS,
-                                  size: sizeMedium,
-                                  child: Icon(
-                                    Icons.visibility,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () async {
-                                  if (!await launchUrl(Uri.parse(value))) {
-                                    throw Exception('Could not launch $value');
-                                  }
-                                },
-                              ),
-                              InkWell(
-                                child: const GFAvatar(
-                                  backgroundColor: GFColors.DANGER,
-                                  size: sizeMedium,
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () {
-                                  onChange(files.copyWith(
-                                      files: List<String>.from(files.files)
-                                        ..removeAt(key)));
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-                .values
-                .toList(),
+                      ),
+                    )))
+                .values,
             ...files.platformFiles
                 .asMap()
-                .map(
-                  (key, value) => MapEntry(
-                    key,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        BoxText.caption(
-                          value.path!.split(Platform.pathSeparator).last,
-                          align: TextAlign.center,
+                .map((key, value) => MapEntry(
+                      key,
+                      ListTile(
+                        leading: GFAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: getImageFile(type),
+                          shape: GFAvatarShape.circle,
                         ),
-                        verticalSpaceTiny,
-                        Flexible(child: getImageFile(type)),
-                        verticalSpaceTiny,
-                        Flexible(
-                          child: GFButtonBar(
-                            children: <Widget>[
-                              InkWell(
-                                child: const GFAvatar(
-                                  backgroundColor: GFColors.SUCCESS,
-                                  size: sizeMedium,
-                                  child: Icon(
-                                    Icons.visibility,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () async {
-                                  if (value.path != null) {
-                                    if (!await launchUrl(
-                                        Uri.file(value.path!))) {
-                                      throw Exception(
-                                          'Could not launch $value');
-                                    }
-                                  }
-                                },
-                              ),
-                              InkWell(
-                                child: const GFAvatar(
-                                  backgroundColor: GFColors.DANGER,
-                                  size: sizeMedium,
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () {
-                                  onChange(files.copyWith(
-                                      files: List<String>.from(files.files)
-                                        ..removeAt(key)));
-                                },
-                              ),
-                            ],
+                        title: BoxText.caption(
+                          value.path!.split(Platform.pathSeparator).last,
+                        ),
+                        trailing: InkWell(
+                          onTap: () => onChange(files.copyWith(
+                              platformFiles:
+                                  List<PlatformFile>.from(files.platformFiles)
+                                    ..removeAt(key))),
+                          child: const Icon(
+                            Icons.close,
+                            color: kcMediumGreyColor,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                )
-                .values
-                .toList(),
+                      ),
+                    ))
+                .values,
           ];
 
           return Column(
             children: [
               Expanded(
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  children: List.generate(items.length, (index) {
-                    return items[index];
-                  }),
+                child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (_, i) {
+                    return items[i];
+                  },
                 ),
               ),
               verticalSpaceSmall,

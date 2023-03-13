@@ -190,7 +190,6 @@ List<Widget> get inputFields => [
               formControlName: 'image',
               placeholder: 'Prendre une image',
             ),
-            verticalSpaceMedium,
           ],
         ),
       )
@@ -201,20 +200,9 @@ List<Widget> get filePickerButtons => [
       verticalSpaceSmall,
       ReactiveForm(
         formGroup: filePickerForm,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BoxFilePicker.multipleImage(
-              formControlName: 'multiImage',
-              placeholder: 'Select',
-            ),
-            verticalSpaceSmall,
-            BoxButton(
-              title: "send",
-              onTap: () => print("FormValues: ${filePickerForm.value}"),
-            ),
-            verticalSpaceMedium,
-          ],
+        child: BoxFilePicker.multipleImage(
+          formControlName: 'multiImage',
+          placeholder: 'Select',
         ),
       )
     ];

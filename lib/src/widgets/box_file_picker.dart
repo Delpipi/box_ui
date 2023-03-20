@@ -30,10 +30,10 @@ class BoxFilePicker extends StatelessWidget {
     this.allowedExtensions,
     this.dialogTitle,
     this.type = FileType.any,
-    this.allowMultiple = false,
     this.showErrors,
     this.pickerButtonTitle,
-  }) : super(key: key);
+  })  : allowMultiple = true,
+        super(key: key);
 
   BoxFilePicker.audio({
     Key? key,

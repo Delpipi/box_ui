@@ -18,6 +18,7 @@ class BoxDropdownField<T> extends StatelessWidget {
   PopupPropsMultiSelection<T>? popupProps;
   final String? placeholder;
   final Widget? leading;
+  final bool isExpanded;
 
   BoxDropdownField({
     Key? key,
@@ -28,6 +29,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     this.leading,
     this.placeholder,
     this.showErrors,
+    this.isExpanded = false,
   })  : search = false,
         multiSelection = false,
         searchItems = [],
@@ -43,6 +45,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     required this.searchItems,
     this.popupProps,
     this.showErrors,
+    this.isExpanded = false,
   })  : search = true,
         multiSelection = false,
         items = const [],
@@ -58,6 +61,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     required this.searchItems,
     this.popupProps,
     this.showErrors,
+    this.isExpanded = false,
   })  : search = true,
         multiSelection = true,
         items = const [],
@@ -90,6 +94,7 @@ class BoxDropdownField<T> extends StatelessWidget {
     );
     return !search
         ? ReactiveDropdownField<T>(
+            isExpanded: isExpanded,
             formControlName: formControlName,
             formControl: formControl,
             validationMessages: validationMessages,

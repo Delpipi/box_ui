@@ -28,6 +28,16 @@ class BoxDateTime extends GetConnect {
     }
   }
 
+   Future getRawCurrentDateTime() async {
+    var response =
+        await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");
+    if (response.body != null) {
+      return  response.body['datetime'];
+    } else {
+      return null;
+    }
+  }
+
   Future<String?> getCurrentTime() async {
     var response =
         await get("http://worldtimeapi.org/api/timezone/Africa/Abidjan");

@@ -19,6 +19,7 @@ class BoxInputField extends StatelessWidget {
   final bool password;
   final void Function()? trailingTapped;
   final int? type;
+  final bool readOnly;
 
   final circularBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
@@ -37,6 +38,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.password = false,
+    this.readOnly = false,
     this.showErrors,
   })  : type = 0,
         super(key: key);
@@ -51,6 +53,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.showErrors,
+    this.readOnly = false,
   })  : type = 1,
         password = false,
         controller = null,
@@ -66,6 +69,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.showErrors,
+    this.readOnly = false,
   })  : type = 2,
         password = false,
         controller = null,
@@ -82,6 +86,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.showErrors,
+    this.readOnly = false,
   })  : type = 3,
         password = false,
         super(key: key);
@@ -97,6 +102,7 @@ class BoxInputField extends StatelessWidget {
     this.trailing,
     this.trailingTapped,
     this.showErrors,
+    this.readOnly = false,
   })  : type = 4,
         password = false,
         super(key: key);
@@ -131,6 +137,7 @@ class BoxInputField extends StatelessWidget {
     switch (type) {
       case 0:
         return ReactiveTextField(
+          readOnly: readOnly,
           formControlName: formControlName,
           formControl: formControl,
           controller: controller,
@@ -142,6 +149,7 @@ class BoxInputField extends StatelessWidget {
         );
       case 1:
         return ReactivePhoneFormField<PhoneNumber>(
+          readOnly: readOnly,
           formControlName: formControlName,
           formControl: formControl as FormControl<PhoneNumber>,
           validationMessages: validationMessages,
@@ -170,6 +178,7 @@ class BoxInputField extends StatelessWidget {
         );
       case 3:
         return ReactiveTextField(
+          readOnly: readOnly,
           formControlName: formControlName,
           formControl: formControl,
           controller: controller,
@@ -181,6 +190,7 @@ class BoxInputField extends StatelessWidget {
         );
       case 4:
         return ReactiveTextField(
+          readOnly: readOnly,
           formControlName: formControlName,
           formControl: formControl,
           controller: controller,

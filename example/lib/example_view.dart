@@ -41,7 +41,7 @@ final form = FormGroup({
     validators: [_requiredTrue, _invalidPhoneLength],
     touched: true,
   ),
-  'image': FormControl<ImageFile>(),
+  'image': FormControl<List<SelectedFile>>(),
   'price': FormControl<RangeValues>(),
   'payment': FormControl<int>(validators: [Validators.required]),
   'menu':
@@ -300,11 +300,6 @@ List<Widget> get rangeSliders => [
           children: [
             BoxText.body('Normal'),
             verticalSpaceSmall,
-            BoxRangeSilder(
-              min: 1000000,
-              max: 7000000,
-              formControlName: 'price',
-            ),
           ],
         ),
       )

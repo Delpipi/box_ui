@@ -4,15 +4,14 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: '>=3.0.2 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
-  reactive_forms: 
-  reactive_range_slider: 
+  reactive_forms:
   reactive_dropdown_search: 
   reactive_image_picker: 
-  reactive_phone_form_field: 
+  reactive_phone_form_field:
   reactive_date_time_picker: 
   reactive_file_picker: 
   better_player: 

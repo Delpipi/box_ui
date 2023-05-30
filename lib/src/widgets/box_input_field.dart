@@ -151,7 +151,9 @@ class BoxInputField extends StatelessWidget {
         return ReactivePhoneFormField<PhoneNumber>(
           readOnly: readOnly,
           formControlName: formControlName,
-          formControl: formControl as FormControl<PhoneNumber>,
+          formControl: formControl != null
+              ? formControl as FormControl<PhoneNumber>
+              : null,
           validationMessages: validationMessages,
           showErrors: showErrors,
           defaultCountry: IsoCode.CI,
@@ -160,7 +162,9 @@ class BoxInputField extends StatelessWidget {
       case 2:
         return ReactiveImagePicker(
           formControlName: formControlName,
-          formControl: formControl as FormControl<ImageFile>,
+          formControl: formControl != null
+              ? formControl as FormControl<List<SelectedFile>>
+              : null,
           showErrors: showErrors,
           decoration: const InputDecoration(
               contentPadding: EdgeInsets.zero,
